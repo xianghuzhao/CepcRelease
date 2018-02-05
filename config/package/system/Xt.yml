@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [X11/Intrinsic.h]
+    package_manager:
+      yum: libXt-devel
+      apt-get: libxt-dev
+  runtime:
+    check:
+      library:
+        - [libXt.so*]
+    package_manager:
+      yum: libXt
+      apt-get: libxt6

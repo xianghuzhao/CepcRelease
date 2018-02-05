@@ -1,0 +1,56 @@
+category: external
+version: 9.6.p02
+
+dep: [GCC, CMake, QT, CLHEP, XercesC]
+
+location:
+  source: source
+  build: build
+  install: install
+path:
+  home: '{install}'
+  src: '{source}'
+  cmake: '{install}'
+  bin: '{install}/bin'
+  lib: '{install}/lib'
+  inc: '{install}/include'
+env:
+  G4INSTALL: '{install}'
+  G4NEUTRONHPDATA: '{install}/share/Geant4-9.6.2/data/G4NDL4.2'
+  G4LEDATA: '{install}/share/Geant4-9.6.2/data/G4EMLOW6.32'
+  G4LEVELGAMMADATA: '{install}/share/Geant4-9.6.2/data/PhotonEvaporation2.3'
+  G4RADIOACTIVEDATA: '{install}/share/Geant4-9.6.2/data/RadioactiveDecay3.6'
+  G4NEUTRONXSDATA: '{install}/share/Geant4-9.6.2/data/G4NEUTRONXS1.2'
+  G4PIIDATA: '{install}/share/Geant4-9.6.2/data/G4PII1.3'
+  G4REALSURFACEDATA: '{install}/share/Geant4-9.6.2/data/RealSurface1.0'
+  G4SAIDXSDATA: '{install}/share/Geant4-9.6.2/data/G4SAIDDATA1.1'
+
+install:
+  download:
+    handler: http
+    param:
+      url: http://geant4.cern.ch/support/source/geant4.{version}.tar.gz
+  extract:
+    handler: tar
+    param:
+      file: geant4.{version}.tar.gz
+      main: geant4.{version}
+  pre_compile:
+    handler: env
+  compile:
+    handler: cmake
+    param:
+      envcmake:
+        GEANT4_INSTALL_DATA: 'ON'
+        GEANT4_USE_SYSTEM_EXPAT: 'OFF'
+        GEANT4_USE_SYSTEM_CLHEP: 'ON'
+        GEANT4_USE_OPENGL_X11: 'ON'
+        GEANT4_USE_QT: 'ON'
+        GEANT4_USE_GDML: 'ON'
+        XERCESC_ROOT_DIR: '{XercesC_root_dir}'
+  post_compile:
+    handler: lib
+  clean:
+    handler: clean
+    param:
+      dir: [build, download, log]

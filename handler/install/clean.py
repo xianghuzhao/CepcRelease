@@ -1,6 +1,6 @@
-from cepcenv.util import safe_rmdir
+from bsm.util import safe_rmdir
 
-from cepcenv.logger import get_logger
+from bsm.logger import get_logger
 _logger = get_logger()
 
 def run(param):

@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [X11/xpm.h]
+    package_manager:
+      yum: libXpm-devel
+      apt-get: libxpm-dev
+  runtime:
+    check:
+      library:
+        - [libXpm.so*]
+    package_manager:
+      yum: libXpm
+      apt-get: libxpm4

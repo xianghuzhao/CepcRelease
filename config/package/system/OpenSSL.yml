@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [openssl/ssl.h]
+    package_manager:
+      yum: openssl-devel
+      apt-get: [openssl, libssl-dev]
+  runtime:
+    check:
+      executable:
+        - [openssl]
+    package_manager:
+      yum: openssl
+      apt-get: openssl

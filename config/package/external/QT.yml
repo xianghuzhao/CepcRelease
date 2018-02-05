@@ -1,0 +1,38 @@
+category: external
+version: 4.7.4
+
+dep: [GCC]
+
+location:
+  source: source
+  build: build
+  install: install
+path:
+  home: '{install}'
+  bin: '{install}/bin'
+  lib: '{install}/lib'
+  pkgconfig: '{install}/lib/pkgconfig'
+  inc: '{install}/include'
+
+install:
+  download:
+    handler: http
+    param:
+      url: http://download.qt.io/archive/qt/{version:.3}/qt-everywhere-opensource-src-{version}.tar.gz
+  extract:
+    handler: tar
+    param:
+      file: qt-everywhere-opensource-src-{version}.tar.gz
+      main: qt-everywhere-opensource-src-{version}
+  pre_compile:
+    handler: env
+  compile:
+    handler: qt
+    param:
+      configure: [-prefix-install, -fast, -make, libs, -no-separate-debug-info, -no-xkb, -no-xinerama, -no-webkit, -opensource]
+  post_compile:
+    handler: lib
+  clean:
+    handler: clean
+    param:
+      dir: [build, source, download, log]

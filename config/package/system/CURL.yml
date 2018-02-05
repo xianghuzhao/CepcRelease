@@ -1,0 +1,10 @@
+category: system
+
+check:
+  install:
+    check:
+      executable:
+        - [curl]
+    package_manager:
+      yum: curl
+      apt-get: curl

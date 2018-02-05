@@ -1,7 +1,7 @@
 import pprint
 import multiprocessing
 
-from cepcenv.util import call
+from bsm.util import call
 
 def auto_make_jobs(make_opt):
     for opt in make_opt:

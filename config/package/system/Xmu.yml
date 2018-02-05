@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [X11/Xmu/Xmu.h]
+    package_manager:
+      yum: libXmu-devel
+      apt-get: libxmu-dev
+  runtime:
+    check:
+      library:
+        - [libXmu.so*]
+    package_manager:
+      yum: libXmu
+      apt-get: libxmu6

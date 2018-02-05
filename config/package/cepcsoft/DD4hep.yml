@@ -1,0 +1,38 @@
+category: cepcsoft
+subdir: Simulation
+version: 00-07
+
+dep: [GCC, CMake, XercesC, ROOT, Geant4, CLHEP, LCIO, GEAR]
+
+location:
+  source: ''
+  build: build
+  install: ''
+path:
+  home: '{install}'
+  src: '{source}'
+  cmake: '{install}'
+  bin: '{install}/bin'
+  lib: '{install}/lib'
+  inc: '{install}/include'
+
+install:
+  download:
+    handler: svn
+    param:
+      url: https://svnsrv.desy.de/public/aidasoft/DD4hep/tags/v{version}
+  compile:
+    handler: cmake
+    param:
+      ignore_install_prefix: true
+      envcmake:
+        BUILD_32BIT_COMPATIBLE: 'OFF'
+        INSTALL_DOC: 'OFF'
+        CMAKE_BUILD_TYPE: RelWithDebInfo
+        DD4HEP_WITH_GEANT4: '0'
+        DD4HEP_USE_XERCESC: '0'
+        DD4HEP_USE_PYROOT: '0'
+  clean:
+    handler: clean
+    param:
+      dir: [build, download, log]

@@ -1,0 +1,207 @@
+diff -Nur gcc-4.9.4/libgcc/config/aarch64/linux-unwind.h gcc-4.9.4_patched/libgcc/config/aarch64/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/aarch64/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/aarch64/linux-unwind.h	2018-01-14 21:36:53.193000325 +0800
+@@ -52,7 +52,7 @@
+   struct rt_sigframe
+   {
+     siginfo_t info;
+-    struct ucontext uc;
++    ucontext_t uc;
+   };
+ 
+   struct rt_sigframe *rt_;
+diff -Nur gcc-4.9.4/libgcc/config/alpha/linux-unwind.h gcc-4.9.4_patched/libgcc/config/alpha/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/alpha/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/alpha/linux-unwind.h	2018-01-14 21:37:10.619000156 +0800
+@@ -51,7 +51,7 @@
+     {
+       struct rt_sigframe {
+ 	siginfo_t info;
+-	struct ucontext uc;
++	ucontext_t uc;
+       } *rt_ = context->cfa;
+       sc = &rt_->uc.uc_mcontext;
+     }
+diff -Nur gcc-4.9.4/libgcc/config/bfin/linux-unwind.h gcc-4.9.4_patched/libgcc/config/bfin/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/bfin/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/bfin/linux-unwind.h	2018-01-14 21:37:31.567999912 +0800
+@@ -52,7 +52,7 @@
+ 	void *puc;
+ 	char retcode[8];
+ 	siginfo_t info;
+-	struct ucontext uc;
++	ucontext_t uc;
+       } *rt_ = context->cfa;
+ 
+       /* The void * cast is necessary to avoid an aliasing warning.
+diff -Nur gcc-4.9.4/libgcc/config/i386/linux-unwind.h gcc-4.9.4_patched/libgcc/config/i386/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/i386/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/i386/linux-unwind.h	2018-01-14 21:38:00.053999579 +0800
+@@ -58,7 +58,7 @@
+   if (*(unsigned char *)(pc+0) == 0x48
+       && *(unsigned long long *)(pc+1) == RT_SIGRETURN_SYSCALL)
+     {
+-      struct ucontext *uc_ = context->cfa;
++      ucontext_t *uc_ = context->cfa;
+       /* The void * cast is necessary to avoid an aliasing warning.
+          The aliasing warning is correct, but should not be a problem
+          because it does not alias anything.  */
+@@ -138,7 +138,7 @@
+ 	siginfo_t *pinfo;
+ 	void *puc;
+ 	siginfo_t info;
+-	struct ucontext uc;
++	ucontext_t uc;
+       } *rt_ = context->cfa;
+       /* The void * cast is necessary to avoid an aliasing warning.
+          The aliasing warning is correct, but should not be a problem
+diff -Nur gcc-4.9.4/libgcc/config/m68k/linux-unwind.h gcc-4.9.4_patched/libgcc/config/m68k/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/m68k/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/m68k/linux-unwind.h	2018-01-14 21:39:32.256000771 +0800
+@@ -33,7 +33,7 @@
+ /* <sys/ucontext.h> is unfortunately broken right now.  */
+ struct uw_ucontext {
+ 	unsigned long	  uc_flags;
+-	struct ucontext  *uc_link;
++	ucontext_t  *uc_link;
+ 	stack_t		  uc_stack;
+ 	mcontext_t	  uc_mcontext;
+ 	unsigned long	  uc_filler[80];
+diff -Nur gcc-4.9.4/libgcc/config/nios2/linux-unwind.h gcc-4.9.4_patched/libgcc/config/nios2/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/nios2/linux-unwind.h	2015-01-20 22:59:59.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/nios2/linux-unwind.h	2018-01-14 21:40:05.400993961 +0800
+@@ -38,7 +38,7 @@
+ 
+ struct nios2_ucontext {
+   unsigned long uc_flags;
+-  struct ucontext *uc_link;
++  ucontext_t *uc_link;
+   stack_t uc_stack;
+   struct nios2_mcontext uc_mcontext;
+   sigset_t uc_sigmask;	/* mask last for extensibility */
+diff -Nur gcc-4.9.4/libgcc/config/pa/linux-unwind.h gcc-4.9.4_patched/libgcc/config/pa/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/pa/linux-unwind.h	2014-10-26 22:50:46.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/pa/linux-unwind.h	2018-01-14 21:40:23.634000235 +0800
+@@ -80,7 +80,7 @@
+   struct sigcontext *sc;
+   struct rt_sigframe {
+     siginfo_t info;
+-    struct ucontext uc;
++    ucontext_t uc;
+   } *frame;
+ 
+   /* rt_sigreturn trampoline:
+diff -Nur gcc-4.9.4/libgcc/config/sh/linux-unwind.h gcc-4.9.4_patched/libgcc/config/sh/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/sh/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/sh/linux-unwind.h	2018-01-14 21:40:55.613001493 +0800
+@@ -83,7 +83,7 @@
+ 	siginfo_t *pinfo;
+ 	void *puc;
+ 	siginfo_t info;
+-	struct ucontext uc;
++	ucontext_t uc;
+       } *rt_ = context->cfa;
+       /* The void * cast is necessary to avoid an aliasing warning.
+          The aliasing warning is correct, but should not be a problem
+@@ -180,7 +180,7 @@
+     {
+       struct rt_sigframe {
+ 	siginfo_t info;
+-	struct ucontext uc;
++	ucontext_t uc;
+       } *rt_ = context->cfa;
+       /* The void * cast is necessary to avoid an aliasing warning.
+          The aliasing warning is correct, but should not be a problem
+diff -Nur gcc-4.9.4/libgcc/config/tilepro/linux-unwind.h gcc-4.9.4_patched/libgcc/config/tilepro/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/tilepro/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/tilepro/linux-unwind.h	2018-01-14 21:42:05.997000352 +0800
+@@ -61,7 +61,7 @@
+   struct rt_sigframe {
+     unsigned char save_area[C_ABI_SAVE_AREA_SIZE];
+     siginfo_t info;
+-    struct ucontext uc;
++    ucontext_t uc;
+   } *rt_;
+ 
+   /* Return if this is not a signal handler.  */
+diff -Nur gcc-4.9.4/libgcc/config/xtensa/linux-unwind.h gcc-4.9.4_patched/libgcc/config/xtensa/linux-unwind.h
+--- gcc-4.9.4/libgcc/config/xtensa/linux-unwind.h	2014-01-03 06:25:22.000000000 +0800
++++ gcc-4.9.4_patched/libgcc/config/xtensa/linux-unwind.h	2018-01-14 21:41:44.090000592 +0800
+@@ -63,7 +63,7 @@
+ 
+   struct rt_sigframe {
+     siginfo_t info;
+-    struct ucontext uc;
++    ucontext_t uc;
+   } *rt_;
+ 
+   /* movi a2, __NR_rt_sigreturn; syscall */
+diff -Nur gcc-4.9.4/libsanitizer/asan/asan_linux.cc gcc-4.9.4_patched/libsanitizer/asan/asan_linux.cc
+--- gcc-4.9.4/libsanitizer/asan/asan_linux.cc	2013-12-05 17:18:38.000000000 +0800
++++ gcc-4.9.4_patched/libsanitizer/asan/asan_linux.cc	2018-01-15 03:10:51.289000804 +0800
+@@ -26,6 +26,7 @@
+ #include <sys/types.h>
+ #include <fcntl.h>
+ #include <pthread.h>
++#include <signal.h>
+ #include <stdio.h>
+ #include <unistd.h>
+ #include <unwind.h>
+diff -Nur gcc-4.9.4/libsanitizer/sanitizer_common/sanitizer_linux.cc gcc-4.9.4_patched/libsanitizer/sanitizer_common/sanitizer_linux.cc
+--- gcc-4.9.4/libsanitizer/sanitizer_common/sanitizer_linux.cc	2013-12-05 17:18:38.000000000 +0800
++++ gcc-4.9.4_patched/libsanitizer/sanitizer_common/sanitizer_linux.cc	2018-01-15 03:12:42.491031849 +0800
+@@ -599,8 +599,7 @@
+   return internal_syscall(__NR_prctl, option, arg2, arg3, arg4, arg5);
+ }
+ 
+-uptr internal_sigaltstack(const struct sigaltstack *ss,
+-                         struct sigaltstack *oss) {
++uptr internal_sigaltstack(const void *ss, void *oss) {
+   return internal_syscall(__NR_sigaltstack, (uptr)ss, (uptr)oss);
+ }
+ 
+diff -Nur gcc-4.9.4/libsanitizer/sanitizer_common/sanitizer_linux.h gcc-4.9.4_patched/libsanitizer/sanitizer_common/sanitizer_linux.h
+--- gcc-4.9.4/libsanitizer/sanitizer_common/sanitizer_linux.h	2013-12-05 17:18:38.000000000 +0800
++++ gcc-4.9.4_patched/libsanitizer/sanitizer_common/sanitizer_linux.h	2018-01-15 03:13:18.895000365 +0800
+@@ -18,7 +18,6 @@
+ #include "sanitizer_platform_limits_posix.h"
+ 
+ struct link_map;  // Opaque type returned by dlopen().
+-struct sigaltstack;
+ 
+ namespace __sanitizer {
+ // Dirent structure for getdents(). Note that this structure is different from
+@@ -28,8 +27,7 @@
+ // Syscall wrappers.
+ uptr internal_getdents(fd_t fd, struct linux_dirent *dirp, unsigned int count);
+ uptr internal_prctl(int option, uptr arg2, uptr arg3, uptr arg4, uptr arg5);
+-uptr internal_sigaltstack(const struct sigaltstack* ss,
+-                          struct sigaltstack* oss);
++uptr internal_sigaltstack(const void* ss, void* oss);
+ uptr internal_sigaction(int signum, const __sanitizer_kernel_sigaction_t *act,
+     __sanitizer_kernel_sigaction_t *oldact);
+ uptr internal_sigprocmask(int how, __sanitizer_kernel_sigset_t *set,
+diff -Nur gcc-4.9.4/libsanitizer/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc gcc-4.9.4_patched/libsanitizer/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc
+--- gcc-4.9.4/libsanitizer/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc	2013-12-05 18:28:59.000000000 +0800
++++ gcc-4.9.4_patched/libsanitizer/sanitizer_common/sanitizer_stoptheworld_linux_libcdep.cc	2018-01-15 03:14:09.063000608 +0800
+@@ -238,7 +238,7 @@
+ 
+   // Alternate stack for signal handling.
+   InternalScopedBuffer<char> handler_stack_memory(kHandlerStackSize);
+-  struct sigaltstack handler_stack;
++  stack_t handler_stack;
+   internal_memset(&handler_stack, 0, sizeof(handler_stack));
+   handler_stack.ss_sp = handler_stack_memory.data();
+   handler_stack.ss_size = kHandlerStackSize;
+diff -Nur gcc-4.9.4/libsanitizer/tsan/tsan_platform_linux.cc gcc-4.9.4_patched/libsanitizer/tsan/tsan_platform_linux.cc
+--- gcc-4.9.4/libsanitizer/tsan/tsan_platform_linux.cc	2013-12-05 17:18:38.000000000 +0800
++++ gcc-4.9.4_patched/libsanitizer/tsan/tsan_platform_linux.cc	2018-01-15 03:11:27.518000448 +0800
+@@ -351,7 +351,7 @@
+ // closes within glibc. The code is a pure hack.
+ int ExtractResolvFDs(void *state, int *fds, int nfd) {
+   int cnt = 0;
+-  __res_state *statp = (__res_state*)state;
++  struct __res_state *statp = (struct __res_state*)state;
+   for (int i = 0; i < MAXNS && cnt < nfd; i++) {
+     if (statp->_u._ext.nsaddrs[i] && statp->_u._ext.nssocks[i] != -1)
+       fds[cnt++] = statp->_u._ext.nssocks[i];

@@ -1,0 +1,14 @@
+category: system
+
+check:
+  install: &CHECK_GLIBC_INSTALL
+    check:
+      include:
+        - [stdio.h]
+      library:
+        - [libc.so]
+    package_manager:
+      yum: [glibc-devel, glibc-headers]
+      apt-get: libc6-dev
+  runtime:
+    <<: *CHECK_GLIBC_INSTALL

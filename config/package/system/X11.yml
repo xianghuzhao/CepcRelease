@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [X11/Xlib.h]
+    package_manager:
+      yum: libX11-devel
+      apt-get: libx11-dev
+  runtime:
+    check:
+      library:
+        - [libX11.so*]
+    package_manager:
+      yum: libX11
+      apt-get: libx11-6

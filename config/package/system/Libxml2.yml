@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [libxml2/libxml/tree.h, libxml/tree.h]
+    package_manager:
+      yum: libxml2-devel
+      apt-get: libxml2-dev
+  runtime:
+    check:
+      library:
+        - [libxml2.so*]
+    package_manager:
+      yum: libxml2
+      apt-get: libxml2

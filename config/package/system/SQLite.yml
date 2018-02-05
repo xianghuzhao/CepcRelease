@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [sqlite3.h]
+    package_manager:
+      yum: sqlite-devel
+      apt-get: [sqlite3, libsqlite3-dev]
+  runtime:
+    check:
+      executable:
+        - [sqlite3]
+    package_manager:
+      yum: sqlite
+      apt-get: sqlite3

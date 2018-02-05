@@ -1,0 +1,10 @@
+category: system
+
+check:
+  install:
+    check:
+      executable:
+        - [wget]
+    package_manager:
+      yum: wget
+      apt-get: wget

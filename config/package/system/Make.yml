@@ -1,0 +1,16 @@
+category: system
+
+install:
+  post_compile:
+    handler: lib
+
+check:
+  install: &CHECK_MAKE_INSTALL
+    check:
+      executable:
+        - [make]
+    package_manager:
+      yum: make
+      apt-get: make
+  runtime:
+    <<: *CHECK_MAKE_INSTALL

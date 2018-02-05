@@ -1,0 +1,10 @@
+category: system
+
+check:
+  install:
+    check:
+      executable:
+        - [svn]
+    package_manager:
+      yum: subversion
+      apt-get: subversion

@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [python*/Python.h]
+    package_manager:
+      yum: python-devel
+      apt-get: python-dev
+  runtime:
+    check:
+      executable:
+        - [python]
+    package_manager:
+      yum: python
+      apt-get: python

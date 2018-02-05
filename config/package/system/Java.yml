@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      executable:
+        - [javac]
+    package_manager:
+      yum: java-1.8.0-openjdk-devel
+      apt-get: openjdk-8-jdk
+  runtime:
+    check:
+      executable:
+        - [java]
+    package_manager:
+      yum: java-1.8.0-openjdk
+      apt-get: openjdk-8-jre

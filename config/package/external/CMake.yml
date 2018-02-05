@@ -1,0 +1,34 @@
+category: external
+version: 2.8.5
+
+dep: GCC
+
+location:
+  source: source
+  build: build
+  install: install
+path:
+  home: '{install}'
+  bin: '{install}/bin'
+  man: '{install}/man'
+
+install:
+  download:
+    handler: http
+    param:
+      url: http://www.cmake.org/files/v{version:.3}/cmake-{version}.tar.gz
+  extract:
+    handler: tar
+    param:
+      file: cmake-{version}.tar.gz
+      main: cmake-{version}
+  pre_compile:
+    handler: env
+  compile:
+    handler: conf_make
+  post_compile:
+    handler: lib
+  clean:
+    handler: clean
+    param:
+      dir: [build, source, download, log]

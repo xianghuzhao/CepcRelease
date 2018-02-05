@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [X11/extensions/shape.h]
+    package_manager:
+      yum: libXext-devel
+      apt-get: libxext-dev
+  runtime:
+    check:
+      library:
+        - [libXext.so*]
+    package_manager:
+      yum: libXext
+      apt-get: libxext6

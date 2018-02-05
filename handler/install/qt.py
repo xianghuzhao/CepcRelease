@@ -1,9 +1,9 @@
 import os
 
-from cepcenv.util import ensure_list
-from cepcenv.util import safe_mkdir
+from bsm.util import ensure_list
+from bsm.util import safe_mkdir
 
-from cepcenv.loader import load_relative
+from bsm.loader import load_relative
 auto_make_jobs = load_relative('util', 'auto_make_jobs')
 call_and_log = load_relative('util', 'call_and_log')
 

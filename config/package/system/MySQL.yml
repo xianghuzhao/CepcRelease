@@ -1,0 +1,21 @@
+category: system
+
+install:
+  post_compile:
+    handler: lib
+
+check:
+  install:
+    check:
+      include:
+        - [mysql/mysql.h, mysql.h]
+    package_manager:
+      yum: mysql-devel
+      apt-get: [mysql-client, libmysqlclient-dev]
+  runtime:
+    check:
+      executable:
+        - [mysql]
+    package_manager:
+      yum: mysql
+      apt-get: mysql-client

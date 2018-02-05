@@ -1,0 +1,40 @@
+category: cepcsoft
+subdir: Reconstruction/HighLevelObjectFinding/Jets
+version: 00-06-01
+
+dep: [GCC, CMake, ILCUTIL, Marlin, MarlinUtil, LCIO, GEAR, RAIDA]
+
+location:
+  source: ''
+  build: build
+  install: ''
+path:
+  home: '{install}'
+  src: '{source}'
+  cmake: '{install}'
+  lib: '{install}/lib'
+  inc: '{install}/include'
+  marlin: '{install}/lib/libLCFIVertex.so'
+
+install:
+  pre_compile:
+    handler: command
+    param:
+      cmd: ['tar', '-xvf', 'boost.tgz']
+  download:
+    handler: svn
+    param:
+      url: https://svnsrv.desy.de/public/marlinreco/LCFIVertex/tags/v{version}
+  compile:
+    handler: cmake
+    param:
+      ignore_install_prefix: true
+      envcmake:
+        BUILD_32BIT_COMPATIBLE: 'OFF'
+        INSTALL_DOC: 'OFF'
+        CMAKE_BUILD_TYPE: RelWithDebInfo
+        AIDA: 'OFF'
+  clean:
+    handler: clean
+    param:
+      dir: [build, download, log]

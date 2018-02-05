@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [fftw3.h]
+    package_manager:
+      yum: fftw-devel
+      apt-get: libfftw3-dev
+  runtime:
+    check:
+      library:
+        - [libfftw3.so*]
+    package_manager:
+      yum: fftw
+      apt-get: libfftw3-bin

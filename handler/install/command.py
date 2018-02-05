@@ -1,6 +1,6 @@
 import os
 
-from cepcenv.loader import load_relative
+from bsm.loader import load_relative
 call_and_log = load_relative('util', 'call_and_log')
 
 def run(param):

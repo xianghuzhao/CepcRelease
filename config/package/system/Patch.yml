@@ -1,0 +1,10 @@
+category: system
+
+check:
+  install:
+    check:
+      executable:
+        - [patch]
+    package_manager:
+      yum: patch
+      apt-get: patch

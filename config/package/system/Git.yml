@@ -1,0 +1,12 @@
+category: system
+
+check:
+  install: &CHECK_GIT_INSTALL
+    check:
+      executable:
+        - [git]
+    package_manager:
+      yum: git
+      apt-get: git
+  runtime:
+    <<: *CHECK_GIT_INSTALL

@@ -1,0 +1,16 @@
+category: system
+
+install:
+  post_compile:
+    handler: lib
+
+check:
+  install:
+    check:
+      executable:
+        - [gcc]
+        - [g++]
+        - [gfortran]
+    package_manager:
+      yum: [gcc, gcc-c++, gcc-gfortran]
+      apt-get: [gcc, g++, gfortran]

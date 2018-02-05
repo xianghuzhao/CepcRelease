@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [GL/glut.h]
+    package_manager:
+      yum: freeglut-devel
+      apt-get: freeglut3-dev
+  runtime:
+    check:
+      library:
+        - [libglut.so*]
+    package_manager:
+      yum: freeglut
+      apt-get: freeglut3

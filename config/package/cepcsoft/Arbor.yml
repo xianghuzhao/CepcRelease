@@ -1,0 +1,40 @@
+category: cepcsoft
+subdir: Reconstruction/PFA
+version: 151125_v3
+
+dep: [GCC, CMake, ROOT, ILCUTIL, Marlin, MarlinUtil]
+
+location:
+  source: ''
+  build: build
+  install: ''
+path:
+  home: '{install}'
+  src: '{source}'
+  cmake: '{install}'
+  lib: '{install}/lib'
+  inc: '{install}/include'
+  marlin: '{install}/lib/libRanger.so'
+
+install:
+  download:
+    handler: http
+    param:
+      url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Arbor/{version}/Arbor-{version}.tar.gz
+  extract:
+    handler: tar
+    param:
+      file: 'Arbor-{version}.tar.gz'
+      main: 'Arbor-{version}'
+  compile:
+    handler: cmake
+    param:
+      ignore_install_prefix: true
+      envcmake:
+        BUILD_32BIT_COMPATIBLE: 'OFF'
+        INSTALL_DOC: 'OFF'
+        CMAKE_BUILD_TYPE: RelWithDebInfo
+  clean:
+    handler: clean
+    param:
+      dir: [build, download, log]

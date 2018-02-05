@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [X11/Xft/Xft.h]
+    package_manager:
+      yum: libXft-devel
+      apt-get: libxft-dev
+  runtime:
+    check:
+      library:
+        - [libXft.so*]
+    package_manager:
+      yum: libXft
+      apt-get: libxft2

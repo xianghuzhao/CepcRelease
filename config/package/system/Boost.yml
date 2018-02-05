@@ -1,0 +1,12 @@
+category: system
+
+check:
+  install: &CHECK_BOOST_INSTALL
+    check:
+      include:
+        - [boost/config.hpp]
+    package_manager:
+      yum: boost-devel
+      apt-get: libboost-dev
+  runtime:
+    <<: *CHECK_BOOST_INSTALL

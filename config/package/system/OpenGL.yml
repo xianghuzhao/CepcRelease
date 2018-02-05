@@ -1,0 +1,19 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [GL/gl.h]
+        - [GL/glu.h]
+    package_manager:
+      yum: [mesa-libGL-devel, mesa-libGLU-devel]
+      apt-get: [libgl1-mesa-dev, libglu1-mesa-dev]
+  runtime:
+    check:
+      library:
+        - [libGL.so*]
+        - [libGLU.so*]
+    package_manager:
+      yum: [mesa-libGL, mesa-libGLU]
+      apt-get: [libgl1-mesa-glx, libglu1-mesa]

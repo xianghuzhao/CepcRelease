@@ -1,0 +1,12 @@
+category: system
+
+check:
+  install: &CHECK_XAUTH_INSTALL
+    check:
+      executable:
+        - [xauth]
+    package_manager:
+      yum: xorg-x11-xauth
+      apt-get: xauth
+  runtime:
+    <<: *CHECK_XAUTH_INSTALL
