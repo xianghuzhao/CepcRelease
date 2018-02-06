@@ -1,8 +1,8 @@
 category: cepcsoft
-subdir: Reconstruction/PFA
-version: 3.2.1
+subdir: Simulation
+version: 0.1.1
 
-dep: [GCC, CMake, ROOT, ILCUTIL, Marlin, MarlinUtil]
+dep: [GCC, CMake, Geant4, MySQL, HepMC, Boost, ILCUTIL, LCIO, GEAR]
 
 location:
   source: ''
@@ -12,20 +12,19 @@ path:
   home: '{install}'
   src: '{source}'
   cmake: '{install}'
+  bin: '{install}/bin'
   lib: '{install}/lib'
-  inc: '{install}/include'
-  marlin: '{install}/lib/libRanger.so'
 
 install:
   download:
     handler: http
     param:
-      url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Arbor/{version}/Arbor-{version}.tar.gz
+      url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/MokkaC/{version}/MokkaC-{version}.tar.gz
   extract:
     handler: tar
     param:
-      file: 'Arbor-{version}.tar.gz'
-      main: 'Arbor-{version}'
+      file: MokkaC-{version}.tar.gz
+      main: MokkaC-{version}
   compile:
     handler: cmake
     param:
