@@ -1,9 +1,9 @@
-cepcenv:
-  require: {'>=': '0.2', '<': '0.3'}
+bsm:
+  require: {'>=': '0.3', '<': '0.4'}
 
 category:
   priority: [work, cepcsoft, external, standby]
-  extra_config: [work_root]
+  extra_config: [arch, os, compiler, platform, work_root]
   categories:
     not_used: {}
     system:
@@ -11,13 +11,13 @@ category:
     external:
       install: true
       auto_env: true
-      required_config: [software_root, platform]
-      root: '{software_root}/{platform}/external'
+      required_config: [software_root]
+      root: '{software_root}/PLATFORM/external'
     cepcsoft:
       install: true
       auto_env: true
-      required_config: [software_root, platform]
-      root: '{software_root}/{platform}/cepcsoft/{version}'
+      required_config: [software_root]
+      root: '{software_root}/PLATFORM/cepcsoft/{version}'
     work:
       auto_package: true
       auto_env: true
@@ -26,12 +26,29 @@ category:
     standby:
       auto_package: true
       auto_env: false
-      required_config: [software_root, platform]
-      root: '{software_root}/{platform}/standby'
+      required_config: [software_root]
+      root: '{software_root}/PLATFORM/standby'
+
+install:
+  steps:
+    - download
+    - extract
+    - patch
+    - pre_build
+    - configure
+    - compile
+    - install
+    - post_build
+    - set_env
+    - clean
+    - save_release_status
+  atomic_start: pre_build
+  atomic_end: set_env
+  no_skip: set_env
 
 global_env:
-  CEPCSOFT: '{software_root}/{platform}/cepcsoft/{version}'
-  CEPCSOFT_EXTERNAL: '{software_root}/{platform}/external'
+  CEPCSOFT: '{software_root}/PLATFORM/cepcsoft/{version}'
+  CEPCSOFT_EXTERNAL: '{software_root}/PLATFORM/external'
   CEPCSOFT_VERSION: '{version}'
 
 path_usage:
@@ -41,15 +58,18 @@ path_usage:
     src: '{package}_src_dir'
     lib: '{package}_lib_dir'
     inc: '{package}_inc_dir'
-  multi_env:
+  path_env:
     bin: PATH
     lib: LD_LIBRARY_PATH
     man: MANPATH
     info: INFOPATH
     pkgconfig: PKG_CONFIG_PATH
     cmake: CMAKE_PREFIX_PATH
+    python: PYTHON_PATH
     marlin: MARLIN_DLL
-  single_env:
+  path_overwrite_env:
+    marlin: MARLIN_DLL
+  solo_env:
     home: '{package}_HOME'
     src: '{package}_SOURCE'
     bin: '{package}_BIN'

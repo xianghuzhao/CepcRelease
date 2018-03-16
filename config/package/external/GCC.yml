@@ -3,45 +3,37 @@ version: 4.9.4
 
 dep: [Wget, GCCSys, Make]
 
-location:
-  source: source
-  build: build
-  install: install
 path:
-  home: '{install}'
   bin: '{install}/bin'
   lib: '{install}/lib64'
   man: '{install}/share/man'
+
 env:
   CC: '{install}/bin/gcc'
   CXX: '{install}/bin/g++'
   FC: '{install}/bin/gfortran'
 
+source:
+  url: http://ftp.gnu.org/gnu/gcc/gcc-{version}/gcc-{version}.tar.gz
+  file: gcc-{version}.tar.gz
+  main: gcc-{version}
+
+configure:
+  args: ['--enable-languages=c,c++,fortran', --disable-multilib]
+
+make_install:
+  args: install-strip
+
+build: [configure, make, make_install]
+
+clean: [build, source, download, log]
+
 install:
-  download:
-    handler: http
-    param:
-      url: http://ftp.gnu.org/gnu/gcc/gcc-{version}/gcc-{version}.tar.gz
-  extract:
-    handler: tar
-    param:
-      file: gcc-{version}.tar.gz
-      main: gcc-{version}
-  pre_compile:
-    handler: command
-    param:
-      cmd:
-        - ['contrib/download_prerequisites']
-        - ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure.in']
-        - ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure']
-  compile:
-    handler: conf_make
-    param:
-      configure: ['--enable-languages=c,c++,fortran', --disable-multilib]
-      install: install-strip
-  post_compile:
-    handler: lib
-  clean:
-    handler: clean
-    param:
-      dir: [build, source, download, log]
+  download: http
+  pre_build:
+    - command:
+        cmd: ['contrib/download_prerequisites']
+    - command:
+        cmd: ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure.in']
+    - command:
+        cmd: ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure']

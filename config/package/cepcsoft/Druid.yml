@@ -6,30 +6,19 @@ dep: [GCC, LCIO, GEAR, ROOT]
 
 location:
   source: ''
-  build: build
+  build: 'src'
   install: ''
+
 path:
-  home: '{install}'
-  src: '{source}'
   bin: '{install}/bin'
 
+source:
+  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Druid/{version}/Druid-{version}.tar.gz
+  file: Druid-{version}.tar.gz
+  main: Druid-{version}
+
+build: [make]
+
 install:
-  download:
-    handler: http
-    param:
-      url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Druid/{version}/Druid-{version}.tar.gz
-  extract:
-    handler: tar
-    param:
-      file: Druid-{version}.tar.gz
-      main: Druid-{version}
-  pre_compile:
-    handler: env
-  compile:
-    handler: make
-    param:
-      make_root: src
-  clean:
-    handler: clean
-    param:
-      dir: [build, download, log]
+  download: http
+  pre_compile: env

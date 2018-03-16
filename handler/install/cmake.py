@@ -15,50 +15,26 @@ def run(param):
     install_dir = param['pkg_info']['dir']['install']
 
     safe_mkdir(build_dir)
-    safe_mkdir(install_dir)
 
 
-    cmake_args = param['action_param'].get('args', [])
+    cmake_args = param['pkg_info']['config'].get('cmake', {}).get('args', [])
     cmake_args = ensure_list(cmake_args)
     cmake_args = [p.format(**param['pkg_dir_list']) for p in cmake_args]
 
-    if not param['action_param'].get('ignore_install_prefix', False):
+    if not param['pkg_info']['config'].get('cmake', {}).get('ignore_install_prefix', False):
         cmake_args.insert(0, '-DCMAKE_INSTALL_PREFIX='+install_dir)
 
-    envcmake = param['action_param'].get('envcmake', {})
-    for k, v in envcmake.items():
+    cmake_var = param['pkg_info']['config'].get('cmake', {}).get('var', {})
+    for k, v in cmake_var.items():
         full_value = v.format(**param['pkg_dir_list'])
         full_arg = '-D{0}={1}'.format(k, full_value)
         cmake_args.append(full_arg)
 
-
-    install_args = param['action_param'].get('install', ['install'])
-    install_args = ensure_list(install_args)
-
-
     env = param.get('env')
-
-
-    make_opt = param['config'].get('make_opt', [])
-    make_opt = ensure_list(make_opt)
-    make_opt = auto_make_jobs(make_opt)
 
 
     with open(param['log_file'], 'w') as f:
         cmd = ['cmake', source_dir] + cmake_args
         ret = call_and_log(cmd, log=f, cwd=build_dir, env=env)
-        if ret != 0:
-            return False
 
-        cmd = ['make'] + make_opt
-        ret = call_and_log(cmd, log=f, cwd=build_dir, env=env)
-        if ret != 0:
-            return False
-
-        if param['action_param'].get('do_make_install', True):
-            cmd = ['make'] + install_args
-            ret = call_and_log(cmd, log=f, cwd=build_dir, env=env)
-            if ret != 0:
-                return False
-
-    return True
+    return {'success': ret==0, 'message': 'CMake exit code: {0}'.format(ret)}

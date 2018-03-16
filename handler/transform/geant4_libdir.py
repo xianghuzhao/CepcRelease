@@ -10,7 +10,7 @@ def run(param):
 
     config_release = param['config_release']
 
-    geant4_path = config_release.get('attribute', {}).get('Geant4', {}).get('path', {})
+    geant4_path = config_release.get('package', {}).get('Geant4', {}).get('path', {})
     if 'lib' in geant4_path:
         geant4_path['lib'] = geant4_path['lib'].replace('/lib', '/'+libdir)
 

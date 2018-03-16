@@ -8,5 +8,3 @@ check:
     package_manager:
       yum: boost-devel
       apt-get: libboost-dev
-  runtime:
-    <<: *CHECK_BOOST_INSTALL

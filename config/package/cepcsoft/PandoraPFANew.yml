@@ -4,32 +4,18 @@ version: 00-12
 
 dep: [GCC, CMake, ROOT, ILCUTIL]
 
-location:
-  source: ''
-  build: build
-  install: ''
 path:
-  home: '{install}'
-  src: '{source}'
-  cmake: '{install}'
   lib: '{install}/lib'
   inc: '{install}/include'
 
+source:
+  url: https://svnsrv.desy.de/public/PandoraPFANew/PandoraPFANew/tags/v{version}
+
+cmake:
+  var:
+    PANDORA_MONITORING: 'OFF'
+
+build: [cmake, make, make_install]
+
 install:
-  download:
-    handler: svn
-    param:
-      url: https://svnsrv.desy.de/public/PandoraPFANew/PandoraPFANew/tags/v{version}
-  compile:
-    handler: cmake
-    param:
-      ignore_install_prefix: true
-      envcmake:
-        BUILD_32BIT_COMPATIBLE: 'OFF'
-        INSTALL_DOC: 'OFF'
-        CMAKE_BUILD_TYPE: RelWithDebInfo
-        PANDORA_MONITORING: 'OFF'
-  clean:
-    handler: clean
-    param:
-      dir: [build, download, log]
+  download: svn

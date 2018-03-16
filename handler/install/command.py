@@ -9,8 +9,9 @@ def run(param):
     if not isinstance(cmd[0], list):
         cmd = [cmd]
 
+    ret = 0
     with open(param['log_file'], 'w') as f:
         for c in cmd:
             ret = call_and_log(c, log=f, cwd=source_dir)
 
-    return ret==0
+    return {'success': ret==0, 'message': 'Command exit code: {0}'.format(ret)}

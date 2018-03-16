@@ -4,32 +4,15 @@ version: 01-07
 
 dep: [GCC, CMake, ROOT, GSL, CLHEP, ILCUTIL, LCIO, GEAR, Marlin, MarlinUtil, MarlinTrk, KiTrack, KiTrackMarlin, RAIDA]
 
-location:
-  source: ''
-  build: build
-  install: ''
 path:
-  home: '{install}'
-  src: '{source}'
-  cmake: '{install}'
   lib: '{install}/lib'
   inc: '{install}/include'
   marlin: '{install}/lib/libForwardTracking.so'
 
+source:
+  url: https://svnsrv.desy.de/public/marlinreco/ForwardTracking/tags/v{version}
+
+build: [cmake, make, make_install]
+
 install:
-  download:
-    handler: svn
-    param:
-      url: https://svnsrv.desy.de/public/marlinreco/ForwardTracking/tags/v{version}
-  compile:
-    handler: cmake
-    param:
-      ignore_install_prefix: true
-      envcmake:
-        BUILD_32BIT_COMPATIBLE: 'OFF'
-        INSTALL_DOC: 'OFF'
-        CMAKE_BUILD_TYPE: RelWithDebInfo
-  clean:
-    handler: clean
-    param:
-      dir: [build, download, log]
+  download: svn

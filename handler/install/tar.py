@@ -8,9 +8,9 @@ call_and_log = load_relative('util', 'call_and_log')
 def run(param):
     version = param['pkg_info']['config']['version']
 
-    tar_file_name = param['action_param']['file'].format(version=version)
+    tar_file_name = param['pkg_info']['config']['source']['file'].format(version=version)
     tar_file = os.path.join(param['pkg_info']['dir']['download'], tar_file_name)
-    main_dir = param['action_param']['main'].format(version=version)
+    main_dir = param['pkg_info']['config']['source']['main'].format(version=version)
     dst_dir = param['pkg_info']['dir']['source']
 
     safe_mkdir(dst_dir)
@@ -22,4 +22,4 @@ def run(param):
     with open(param['log_file'], 'w') as f:
         ret = call_and_log(cmd, log=f, cwd=dst_dir)
 
-    return ret==0
+    return {'success': ret==0, 'message': 'Tar exit code: {0}'.format(ret)}

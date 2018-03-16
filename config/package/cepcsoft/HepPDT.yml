@@ -2,32 +2,19 @@ category: cepcsoft
 subdir: Simulation
 version: 3.04.01
 
-dep: [GCC, CMake]
+dep: [GCC]
 
-location:
-  source: source
-  build: build
-  install: install
 path:
-  home: '{install}'
-  src: '{source}'
   cmake: '{install}'
   lib: '{install}/lib'
   inc: '{install}/include'
 
+source:
+  url: http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-{version}.tar.gz
+  file: HepPDT-{version}.tar.gz
+  main: HepPDT-{version}
+
+build: [configure, make, make_install]
+
 install:
-  download:
-    handler: http
-    param:
-      url: http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-{version}.tar.gz
-  extract:
-    handler: tar
-    param:
-      file: HepPDT-{version}.tar.gz
-      main: HepPDT-{version}
-  compile:
-    handler: conf_make
-  clean:
-    handler: clean
-    param:
-      dir: [build, download, log]
+  download: http

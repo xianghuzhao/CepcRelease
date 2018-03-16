@@ -4,39 +4,25 @@ version: 02-04-03
 
 dep: [GCC, CMake, CLHEP, ROOT, ILCUTIL]
 
-location:
-  source: ''
-  build: build
-  install: ''
 path:
-  home: '{install}'
-  src: '{source}'
-  cmake: '{install}'
   bin: '{install}/bin'
   lib: '{install}/lib'
-  inc: '{install}/include'
+  inc: '{source}/src/python'
+
 env:
   LCIO: '{install}'
 
+source:
+  url: svn://svn.freehep.org/lcio/tags/v{version}
+
+cmake:
+  var:
+    BUILD_ROOTDICT: 'ON'
+    INSTALL_JAR: 'OFF'
+    LCIO_GENERATE_HEADERS: 'OFF'
+
+build: [cmake, make, make_install]
+
 install:
-  download:
-    handler: svn
-    param:
-      url: svn://svn.freehep.org/lcio/tags/v{version}
-  pre_compile:
-    handler: env
-  compile:
-    handler: cmake
-    param:
-      ignore_install_prefix: true
-      envcmake:
-        BUILD_32BIT_COMPATIBLE: 'OFF'
-        INSTALL_DOC: 'OFF'
-        CMAKE_BUILD_TYPE: RelWithDebInfo
-        BUILD_ROOTDICT: 'ON'
-        INSTALL_JAR: 'OFF'
-        LCIO_GENERATE_HEADERS: 'OFF'
-  clean:
-    handler: clean
-    param:
-      dir: [build, download, log]
+  download: svn
+  pre_compile: env

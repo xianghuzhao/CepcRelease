@@ -3,13 +3,7 @@ version: '1.14'
 
 dep: [GCC]
 
-location:
-  source: source
-  build: build
-  install: install
 path:
-  home: '{install}'
-  src: '{source}'
   cmake: '{install}'
   bin: '{install}/bin'
   lib: '{install}/lib'
@@ -18,23 +12,13 @@ path:
   man: '{install}/share/man'
   info: '{install}/share/info'
 
+source:
+  url: http://mirrors.kernel.org/gnu/gsl/gsl-{version}.tar.gz
+  file: gsl-{version}.tar.gz
+  main: gsl-{version}
+
+build: [configure, make, make_install]
+
 install:
-  download:
-    handler: http
-    param:
-      url: http://mirrors.kernel.org/gnu/gsl/gsl-{version}.tar.gz
-  extract:
-    handler: tar
-    param:
-      file: gsl-{version}.tar.gz
-      main: gsl-{version}
-  pre_compile:
-    handler: env
-  compile:
-    handler: conf_make
-  post_compile:
-    handler: lib
-  clean:
-    handler: clean
-    param:
-      dir: [build, download, log]
+  download: http
+  pre_compile: env

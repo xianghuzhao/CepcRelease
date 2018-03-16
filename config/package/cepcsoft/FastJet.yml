@@ -4,38 +4,24 @@ version: 2.4.2
 
 dep: [GCC]
 
-location:
-  source: source
-  build: build
-  install: install
 path:
-  home: '{install}'
-  src: '{source}'
   cmake: '{install}'
   bin: '{install}/bin'
   lib: '{install}/lib'
   inc: '{install}/include'
 
+source:
+  #url: http://www.lpthe.jussieu.fr/~salam/fastjet/repo/fastjet-{version}.tar.gz
+  url: http://fastjet.fr/repo/fastjet-{version}.tar.gz
+  file: fastjet-{version}.tar.gz
+  main: fastjet-{version}
+
+patch: fastjet-2.4.2.patch
+
+configure:
+  args: --enable-shared
+
+build: [configure, make, make_install]
+
 install:
-  download:
-    handler: http
-    param:
-      #url: http://www.lpthe.jussieu.fr/~salam/fastjet/repo/fastjet-{version}.tar.gz
-      url: http://fastjet.fr/repo/fastjet-{version}.tar.gz
-  extract:
-    handler: tar
-    param:
-      file: fastjet-{version}.tar.gz
-      main: fastjet-{version}
-  pre_compile:
-    handler: patch
-    param:
-      file: fastjet-2.4.2.patch
-  compile:
-    handler: conf_make
-    param:
-      configure: --enable-shared
-  clean:
-    handler: clean
-    param:
-      dir: [build, download, log]
+  download: http

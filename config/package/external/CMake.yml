@@ -3,32 +3,19 @@ version: 2.8.5
 
 dep: GCC
 
-location:
-  source: source
-  build: build
-  install: install
 path:
-  home: '{install}'
   bin: '{install}/bin'
   man: '{install}/man'
 
+source:
+  url: http://www.cmake.org/files/v{version:.3}/cmake-{version}.tar.gz
+  file: cmake-{version}.tar.gz
+  main: cmake-{version}
+
+build: [configure, make, make_install]
+
+clean: [build, source, download, log]
+
 install:
-  download:
-    handler: http
-    param:
-      url: http://www.cmake.org/files/v{version:.3}/cmake-{version}.tar.gz
-  extract:
-    handler: tar
-    param:
-      file: cmake-{version}.tar.gz
-      main: cmake-{version}
-  pre_compile:
-    handler: env
-  compile:
-    handler: conf_make
-  post_compile:
-    handler: lib
-  clean:
-    handler: clean
-    param:
-      dir: [build, source, download, log]
+  download: http
+  pre_build: env

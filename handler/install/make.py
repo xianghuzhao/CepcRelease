@@ -8,23 +8,20 @@ call_and_log = load_relative('util', 'call_and_log')
 
 
 def run(param):
-    source_dir = param['pkg_info']['dir']['source']
-
-    make_root = param['action_param'].get('make_root', '')
-    if not make_root:
-        make_root = source_dir
-    else:
-        make_root = os.path.join(source_dir, make_root)
-    
+    build_dir = param['pkg_info']['dir']['build']
 
     env = param.get('env')
+    env_make = env.copy()
+    for k, v in param['pkg_info']['config'].get('make', {}).get('env', {}).items():
+        env_make[k] = v.format(**param['pkg_dir_list'])
 
-    make_opt = param['config'].get('make_opt', [])
+    make_opt = param['config_user'].get('make_opt', [])
     make_opt = ensure_list(make_opt)
     make_opt = auto_make_jobs(make_opt)
 
 
     with open(param['log_file'], 'w') as f:
-        ret = call_and_log(['make']+make_opt, log=f, cwd=make_root, env=env)
+        cmd = ['make'] + make_opt
+        ret = call_and_log(cmd, log=f, cwd=build_dir, env=env_make)
 
-    return ret==0
+    return {'success': ret==0, 'message': 'Make exit code: {0}'.format(ret)}
