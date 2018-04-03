@@ -16,11 +16,12 @@ def run(param):
 
     param['config_release'] = _run_sub_transform('install_steps', param)
 
-    if 'source' not in option or option['source'].lower() != 'origin':
-        param['config_release'] = _run_sub_transform('ihep_source', param)
+    if 'operation' in param and param['operation'] == 'install':
+        if 'source' not in option or option['source'].lower() != 'origin':
+            param['config_release'] = _run_sub_transform('ihep_source', param)
 
-    _run_switch('no_clean', option, param)
-    _run_switch('clean_only', option, param)
-    _run_switch('keep_log', option, param)
+        _run_switch('no_clean', option, param)
+        _run_switch('clean_only', option, param)
+        _run_switch('keep_log', option, param)
 
     return param['config_release']
