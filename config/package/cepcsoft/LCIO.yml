@@ -7,7 +7,8 @@ dep: [GCC, CMake, CLHEP, ROOT, ILCUTIL]
 path:
   bin: '{install}/bin'
   lib: '{install}/lib'
-  inc: '{source}/src/python'
+  inc: '{install}/include'
+  python: '{source}/src/python'
 
 env:
   LCIO: '{install}'
