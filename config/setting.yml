@@ -1,7 +1,7 @@
 bsm:
   require: {'>=': '0.3', '<': '0.4'}
 
-extra_config: [arch, os, compiler, platform, work_root]
+#extra_config: [arch, os, compiler, platform, work_root]
 
 category:
   priority: [work, cepcsoft, external, standby]
@@ -12,22 +12,18 @@ category:
     external:
       install: true
       auto_env: true
-      required_config: [software_root]
       root: '{software_root}/PLATFORM/external'
     cepcsoft:
       install: true
       auto_env: true
-      required_config: [software_root]
       root: '{software_root}/PLATFORM/cepcsoft/{version}'
     work:
       auto_package: true
       auto_env: true
-      required_config: [work_root]
       root: '{work_root}'
     standby:
       auto_package: true
       auto_env: false
-      required_config: [software_root]
       root: '{software_root}/PLATFORM/standby'
 
 install:

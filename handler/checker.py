@@ -1,2 +1,5 @@
 def run(param):
-    return True
+    result = {}
+    result['missing_pacakges'] = []
+    result['install_command'] = ['']
+    return result
