@@ -12,6 +12,9 @@ location:
 path:
   bin: '{install}/bin'
 
+env:
+  DRUIDDIR: '{install}'
+
 source:
   url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Druid/{version}/Druid-{version}.tar.gz
   file: Druid-{version}.tar.gz
