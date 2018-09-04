@@ -9,9 +9,10 @@ def _run_switch(name, option, param):
         param['config_release'] = _run_sub_transform(name, param)
 
 def run(param):
-    option = param['option']
+    option = param['config_scenario']['option']
 
     param['config_release'] = _run_sub_transform('software_platform', param)
+    param['config_release'] = _run_sub_transform('work_root', param)
     param['config_release'] = _run_sub_transform('geant4_libdir', param)
 
     param['config_release'] = _run_sub_transform('install_steps', param)

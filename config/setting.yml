@@ -20,7 +20,7 @@ category:
     work:
       auto_package: true
       auto_env: true
-      root: '{work_root}'
+      root: 'WORK_ROOT'
     standby:
       auto_package: true
       auto_env: false
@@ -49,7 +49,7 @@ global_env:
   CEPCSOFT_VERSION: '{version}'
   CEPCSOFT_PLATFORM: PLATFORM
 
-path_usage:
+path_def:
   install:
     home: '{package}_root_dir'
     src: '{package}_src_dir'

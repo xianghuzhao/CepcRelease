@@ -1,10 +1,12 @@
 ## Change Log
 
-### 0.2.0 (xxxx/xx/xx)
+### 1.0.0 (xxxx/xx/xx)
+* CEPC v4
 * Compatible with BSM 0.3.0
 * Geant4 data download could select IHEP source
 
 ### 0.1.0 (2018/02/06)
+* CEPC v4
 * Compatible with cepcenv 0.2.0
 * Most package versions are based on ILCSoft v01-17-05
 * Add GCC 4.9.4 and all other packages are compiled by it

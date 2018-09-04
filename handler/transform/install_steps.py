@@ -56,13 +56,14 @@ def run(param):
 
         # Setup default values for location and path
         cfg.setdefault('location', {})
-        cfg['location'].setdefault('build', 'build')
+        cfg['location'].setdefault('download', '{package_work}/download')
+        cfg['location'].setdefault('build', '{package_content}/build')
         if category == 'cepcsoft' and 'build' in cfg and 'cmake' in cfg['build']:
-            cfg['location'].setdefault('source', '')
-            cfg['location'].setdefault('install', '')
+            cfg['location'].setdefault('source', '{package_content}')
+            cfg['location'].setdefault('install', '{package_content}')
         else:
-            cfg['location'].setdefault('source', 'source')
-            cfg['location'].setdefault('install', 'install')
+            cfg['location'].setdefault('source', '{package_content}/source')
+            cfg['location'].setdefault('install', '{package_content}/install')
 
         cfg.setdefault('path', {})
         cfg['path'].setdefault('home', '{install}')

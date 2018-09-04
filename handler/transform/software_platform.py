@@ -64,9 +64,9 @@ def _detect_compiler(config_release):
     return _provided_compiler()
 
 
-def _search_config(config_version, name):
-    if name in config_version and config_version[name]:
-        return config_version[name]
+def _search_config(config_scenario, name):
+    if name in config_scenario and config_scenario[name]:
+        return config_scenario[name]
     return ''
 
 def _modify_categories(config_release, final_platform):
@@ -82,14 +82,14 @@ def _modify_global_env(config_release, final_platform):
 
 
 def run(param):
-    config_version = param['config_version']
+    config_scenario = param['config_scenario']
     config_release = param['config_release']
 
-    arch = (_search_config(config_version, 'arch') or _detect_arch())
-    os = (_search_config(config_version, 'os') or _detect_os())
-    compiler = (_search_config(config_version, 'compiler') or _detect_compiler(config_release))
+    arch = (_search_config(config_scenario, 'arch') or _detect_arch())
+    os = (_search_config(config_scenario, 'os') or _detect_os())
+    compiler = (_search_config(config_scenario, 'compiler') or _detect_compiler(config_release))
 
-    final_platform = (_search_config(config_version, 'platform') or '-'.join([arch, os, compiler]))
+    final_platform = (_search_config(config_scenario, 'platform') or '-'.join([arch, os, compiler]))
 
     _modify_categories(config_release, final_platform)
     _modify_global_env(config_release, final_platform)
