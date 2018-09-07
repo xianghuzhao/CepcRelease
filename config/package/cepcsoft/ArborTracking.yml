@@ -1,0 +1,18 @@
+category: cepcsoft
+subdir: Reconstruction/Tracking
+version: 3.1.0
+
+dep: [GCC, CMake, ROOT, ILCUTIL, Marlin, MarlinUtil]
+
+path:
+  lib: '{install}/lib'
+  inc: '{install}/include'
+  marlin: '{install}/lib/libArborTracking.so'
+
+source:
+  url: http://cepcgit.ihep.ac.cn/cepcsoft/ArborTracking
+
+build: [cmake, make, make_install]
+
+install:
+  download: git
