@@ -1,0 +1,17 @@
+category: system
+
+check:
+  install:
+    check:
+      include:
+        - [graphviz/gvc.h]
+    package_manager:
+      yum: graphviz-devel
+      apt-get: graphviz-dev
+  runtime:
+    check:
+      library:
+        - [libgvc.so*]
+    package_manager:
+      yum: graphviz
+      apt-get: graphviz
