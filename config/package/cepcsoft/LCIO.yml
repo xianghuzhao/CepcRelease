@@ -10,7 +10,7 @@ path:
   inc: '{install}/include'
   python: '{source}/src/python'
 
-env:
+setenv:
   LCIO: '{install}'
 
 source:

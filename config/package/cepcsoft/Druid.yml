@@ -12,7 +12,7 @@ location:
 path:
   bin: '{install}/bin'
 
-env:
+setenv:
   DRUIDDIR: '{install}'
 
 source:

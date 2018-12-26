@@ -45,18 +45,21 @@ install:
   atomic_end: set_env
   no_skip: set_env
 
-global_env:
-  solo:
+env:
+  set_env:
     CEPCSOFT: '{software_root}/PLATFORM/cepcsoft/{version}'
     CEPCSOFT_EXTERNAL: '{software_root}/PLATFORM/external'
+    CEPCSOFT_DATA: '{software_root}/data'
     CEPCSOFT_VERSION: '{version}'
     CEPCSOFT_PLATFORM: PLATFORM
-  path:
-    BSM_APP_VERSION_PATH: ['{app_id}/{version}']
-  unset:
+  set_path:
+    BSM_APP_VERSION_PATH: ['cepcenv/{version}']
+  unset_env:
     - MARLIN_DLL
   alias:
     hehe: 'hehe xixi lala'
+  unalias:
+    - hehe
 
 package_path:
   full_list:
@@ -74,12 +77,12 @@ package_path:
     cmake: CMAKE_PREFIX_PATH
     python: PYTHONPATH
     marlin: MARLIN_DLL
-  solo_env:
-    home: '{package}_HOME'
-    src: '{package}_SOURCE'
-    bin: '{package}_BIN'
-    lib: '{package}_LIB'
-    inc: '{package}_INCLUDE'
+#  solo_env:
+#    home: '{package}_HOME'
+#    src: '{package}_SOURCE'
+#    bin: '{package}_BIN'
+#    lib: '{package}_LIB'
+#    inc: '{package}_INCLUDE'
 
 handler:
   # This can also be set in package config

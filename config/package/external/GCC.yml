@@ -8,7 +8,7 @@ path:
   lib: '{install}/lib64'
   man: '{install}/share/man'
 
-env:
+setenv:
   CC: '{install}/bin/gcc'
   CXX: '{install}/bin/g++'
   FC: '{install}/bin/gfortran'

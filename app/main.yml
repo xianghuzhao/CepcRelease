@@ -1,8 +1,11 @@
 id: cepcenv
 name: CEPCEnv
-description: CEPC software management tool
+description: CEPCSoft management tool
 site: http://cepcsoft.ihep.ac.cn
-version_pattern: v(\d+\.\d+\.\d+\-?.*)
+version_pattern: ^v(\d+\.\d+\.\d+(?:\-.+)?)$
+
+release_dir_name: .cepcenv
+package_work_dir_name: .cepcenv
 
 example_config_user: cepcenv.conf.example
 release_repo: https://github.com/cepc/cepc-release

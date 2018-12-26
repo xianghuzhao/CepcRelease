@@ -10,7 +10,7 @@ path:
   man: '{install}/man'
   python: '{install}/lib'
 
-env:
+setenv:
   ROOTSYS: '{install}'
 
 source:

@@ -8,7 +8,7 @@ path:
   lib: '{install}/lib'
   inc: '{install}/include'
 
-env:
+setenv:
   GDML_SCHEMA_DIR: '{install}'
 
 source:
