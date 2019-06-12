@@ -1,5 +1,3 @@
-import os
-
 from bsm.util import safe_mkdir
 
 from bsm.loader import load_relative

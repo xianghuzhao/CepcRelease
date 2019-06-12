@@ -1,7 +1,7 @@
 from bsm.loader import load_relative
 
 def _run_sub_transform(name, param):
-    run_func = load_relative('transform.'+name, 'run')
+    run_func = load_relative('transform_package.'+name, 'run')
     return run_func(param)
 
 def _run_switch(name, option, param):
@@ -9,6 +9,8 @@ def _run_switch(name, option, param):
         param['config_release'] = _run_sub_transform(name, param)
 
 def run(param):
+    return param['config_package']
+
     option = param['config_scenario']['option']
 
     param['config_release'] = _run_sub_transform('software_platform', param)

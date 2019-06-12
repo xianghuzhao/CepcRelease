@@ -1,5 +1,5 @@
 # TODO: add this priority mechanism
-PRIORITY_LIST = ('compile', 'extract', 'post_compile', 'pre_compile', 'download', 'clean')
+_PRIORITY_LIST = ('compile', 'extract', 'post_build', 'pre_build', 'download', 'clean')
 
 _MAX_TOTAL = 8
 _MAX_EXTRACT = 4

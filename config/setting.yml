@@ -1,32 +1,41 @@
 bsm:
-  require: {'>=': '0.3', '<': '0.4'}
+#  require: '>=0.4,<1.0'
+  require: '==0.4.*'
 
 category:
-  priority: [work, cepcsoft, external, standby]
-  categories:
-    not_used: {}
-    system:
-      pre_check: true
-    external:
-      install: true
-      auto_env: true
-      root: '{software_root}/PLATFORM/external'
-    cepcsoft:
-      install: true
-      auto_env: true
-      root: '{software_root}/PLATFORM/cepcsoft/{version}'
-    data:
-      install: true
-      auto_env: true
-      root: '{software_root}/data'
-    work:
-      auto_package: true
-      auto_env: true
-      root: 'WORK_ROOT'
-    standby:
-      auto_package: true
-      auto_env: false
-      root: '{software_root}/PLATFORM/standby'
+  not_used: {}
+  system:
+    pre_check: true
+  external:
+    install: true
+    auto_env: true
+    version_dir: true
+    root: '{software_root}/{platform}/external'
+  cepcsoft:
+    install: true
+    auto_env: true
+    version_dir: true
+    root: '{software_root}/{platform}/cepcsoft/{version}'
+  data:
+    install: true
+    auto_env: true
+    version_dir: true
+    root: '{software_root}/data'
+  work:
+    auto_env: true
+    shared: true
+    root: 'WORK_ROOT'
+  work_ver:
+    auto_env: true
+    shared: true
+    version_dir: true
+    root: 'WORK_VERSION_ROOT'
+  standby:
+    auto_env: false
+    version_dir: true
+    root: '{software_root}/{platform}/standby'
+
+category_priority: [work, cepcsoft, external, data, standby]
 
 install:
   steps:
@@ -38,21 +47,21 @@ install:
     - compile
     - install
     - post_build
-    - set_env
     - clean
-    - save_release_status
   atomic_start: pre_build
-  atomic_end: set_env
-  no_skip: set_env
+  atomic_end: post_build
+  options_to_save:
+    - python
+    - ruby
 
 env:
   set_env:
-    CEPCSOFT: '{software_root}/PLATFORM/cepcsoft/{version}'
-    CEPCSOFT_EXTERNAL: '{software_root}/PLATFORM/external'
+    CEPCSOFT: '{software_root}/{platform}/cepcsoft/{version}'
+    CEPCSOFT_EXTERNAL: '{software_root}/{platform}/external'
     CEPCSOFT_DATA: '{software_root}/data'
     CEPCSOFT_VERSION: '{version}'
-    CEPCSOFT_PLATFORM: PLATFORM
-  set_path:
+    CEPCSOFT_PLATFORM: '{platform}'
+  append_path:
     BSM_APP_VERSION_PATH: ['cepcenv/{version}']
   unset_env:
     - MARLIN_DLL
@@ -61,22 +70,25 @@ env:
   unalias:
     - hehe
 
-package_path:
-  full_list:
-    home: '{package}_root_dir'
-    src: '{package}_src_dir'
-    bin: '{package}_bin_dir'
-    lib: '{package}_lib_dir'
-    inc: '{package}_inc_dir'
-  path_env:
-    bin: PATH
-    lib: LD_LIBRARY_PATH
-    man: MANPATH
-    info: INFOPATH
-    pkgconfig: PKG_CONFIG_PATH
-    cmake: CMAKE_PREFIX_PATH
-    python: PYTHONPATH
-    marlin: MARLIN_DLL
+#package_path:
+#  full_list:
+#    home: '{package}_root_dir'
+#    src: '{package}_src_dir'
+#    bin: '{package}_bin_dir'
+#    lib: '{package}_lib_dir'
+#    inc: '{package}_inc_dir'
+package_path_list:
+  name: '{package}_{path}_dir'
+
+prepend_package_path:
+  PATH: bin
+  LD_LIBRARY_PATH: lib
+  MANPATH: man
+  INFOPATH: info
+  PKG_CONFIG_PATH: pkgconfig
+  CMAKE_PREFIX_PATH: cmake
+  PYTHONPATH: python
+  MARLIN_DLL: marlin
 #  solo_env:
 #    home: '{package}_HOME'
 #    src: '{package}_SOURCE'
