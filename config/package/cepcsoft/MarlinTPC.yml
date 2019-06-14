@@ -1,8 +1,7 @@
-category: cepcsoft
 subdir: Analysis/SubDetectorStudy/TPC
 version: 00-16
 
-dep: [GCC, CMake, GSL, ROOT, CLHEP, ILCUTIL, LCIO, GEAR, Marlin, LCCD, RAIDA, KalTest, KalDet, Mokka, PathFinder, GBL]
+dep: [GCC, CMake, GSL, ROOT, CLHEP, ILCUTIL, LCIO, GEAR, Marlin, LCCD, RAIDA, KalTest, KalDet, MokkaC, PathFinder, GBL]
 
 path:
   bin: '{install}/bin'

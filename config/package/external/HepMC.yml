@@ -1,4 +1,3 @@
-category: external
 version: 2.06.08
 
 dep: [GCC, CMake]
@@ -6,11 +5,10 @@ dep: [GCC, CMake]
 path:
   lib: '{install}/lib'
   inc: '{install}/include'
+  cmake: '{install}'
 
 source:
   url: http://lcgapp.cern.ch/project/simu/HepMC/download/HepMC-{version}.tar.gz
-  file: HepMC-{version}.tar.gz
-  main: HepMC-{version}
 
 cmake:
   var:
@@ -21,4 +19,3 @@ build: [cmake, make, make_install]
 
 install:
   download: http
-  pre_compile: env

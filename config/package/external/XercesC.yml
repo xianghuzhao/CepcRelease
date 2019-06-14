@@ -1,19 +1,16 @@
-category: external
 version: 3.2.0
 
 dep: [GCC]
 
 path:
-  cmake: '{install}'
   bin: '{install}/bin'
   lib: '{install}/lib'
-  pkgconfig: '{install}/lib/pkgconfig'
   inc: '{install}/include'
+  pkgconfig: '{install}/lib/pkgconfig'
+  cmake: '{install}'
 
 source:
   url: https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-{version}.tar.gz
-  file: xerces-c-{version}.tar.gz
-  main: xerces-c-{version}
 
 configure:
   args: [--enable-transcoder-gnuiconv, --enable-msgloader-inmemory]
@@ -22,4 +19,3 @@ build: [configure, make, make_install]
 
 install:
   download: http
-  pre_compile: env

@@ -1,12 +1,12 @@
 from bsm.util import ensure_list
 
-def run(param):
-    config_release = param['config_release']
+def run(param, cfg):
+    option = param['config_option']
 
-    for pkg, cfg in config_release.get('package', {}).items():
-        if 'clean' in cfg:
-            clean_dirs = ensure_list(cfg['clean'])
-            clean_dirs.remove('log')
-            cfg['clean'] = clean_dirs
+    if not option.get('keep_log'):
+        return
 
-    return config_release
+    if 'clean' in cfg:
+        clean_list = ensure_list(cfg['clean'])
+        clean_list.remove('log')
+        cfg['clean'] = clean_list

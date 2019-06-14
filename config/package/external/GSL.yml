@@ -1,24 +1,20 @@
-category: external
 version: '1.14'
 
 dep: [GCC]
 
 path:
-  cmake: '{install}'
   bin: '{install}/bin'
   lib: '{install}/lib'
-  pkgconfig: '{install}/lib/pkgconfig'
   inc: '{install}/include'
   man: '{install}/share/man'
   info: '{install}/share/info'
+  pkgconfig: '{install}/lib/pkgconfig'
+  cmake: '{install}'
 
 source:
   url: http://mirrors.kernel.org/gnu/gsl/gsl-{version}.tar.gz
-  file: gsl-{version}.tar.gz
-  main: gsl-{version}
 
 build: [configure, make, make_install]
 
 install:
   download: http
-  pre_compile: env

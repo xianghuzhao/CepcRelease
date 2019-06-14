@@ -1,10 +1,9 @@
-def run(param):
-    config_release = param['config_release']
+def run(param, cfg):
+    option = param['config_option']
 
-    for pkg, cfg in config_release.get('package', {}).items():
-        install_cfg = cfg.get('install', {})
-        for step in list(install_cfg):
-            if step != 'clean':
-                del install_cfg[step]
+    if not option.get('clean_only'):
+        return
 
-    return config_release
+    for step in cfg.get('install', {}):
+        if step != 'clean':
+            del cfg['install'][step]

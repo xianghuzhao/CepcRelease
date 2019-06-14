@@ -2,18 +2,19 @@ from bsm.util import ensure_list
 from bsm.util import call_and_log
 
 def run(param):
-    build_dir = param['pkg_info']['dir']['build']
+    build_dir = param['config_package'].get('path', {}).get('build')
+    if not build_dir:
+        return {'success': False, 'message': 'Path "build" is not specified'}
 
     env = param.get('env')
     env_make = env.copy()
-    for k, v in param['pkg_info']['config'].get('make', {}).get('env', {}).items():
-        env_make[k] = v.format(**param['pkg_dir_list'])
+    for k, v in param['config_package'].get('make', {}).get('env', {}).items():
+        env_make[k] = v
 
     if 'jobs' in param['config_package'].get('make', {}):
         jobs = param['config_package']['make']['jobs']
     else:
-        jobs = param['config_attibute'].get('make_jobs', 1)
-
+        jobs = param['config_attribute'].get('make_jobs', 1)
     make_opt = ['-j{0}'.format(jobs)]
 
     with open(param['log_file'], 'w') as f:

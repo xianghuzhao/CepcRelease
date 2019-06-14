@@ -35,7 +35,7 @@ category:
     version_dir: true
     root: '{software_root}/{platform}/standby'
 
-category_priority: [work, cepcsoft, external, data, standby]
+category_priority: [work_ver, work, cepcsoft, external, data, standby]
 
 install:
   steps:
@@ -69,32 +69,6 @@ env:
     hehe: 'hehe xixi lala'
   unalias:
     - hehe
-
-#package_path:
-#  full_list:
-#    home: '{package}_root_dir'
-#    src: '{package}_src_dir'
-#    bin: '{package}_bin_dir'
-#    lib: '{package}_lib_dir'
-#    inc: '{package}_inc_dir'
-package_path_list:
-  name: '{package}_{path}_dir'
-
-prepend_package_path:
-  PATH: bin
-  LD_LIBRARY_PATH: lib
-  MANPATH: man
-  INFOPATH: info
-  PKG_CONFIG_PATH: pkgconfig
-  CMAKE_PREFIX_PATH: cmake
-  PYTHONPATH: python
-  MARLIN_DLL: marlin
-#  solo_env:
-#    home: '{package}_HOME'
-#    src: '{package}_SOURCE'
-#    bin: '{package}_BIN'
-#    lib: '{package}_LIB'
-#    inc: '{package}_INCLUDE'
 
 handler:
   # This can also be set in package config

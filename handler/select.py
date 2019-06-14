@@ -6,10 +6,6 @@ _MAX_EXTRACT = 4
 _MAX_COMPILE = 1
 
 def run(param):
-    config_user = param['config_user']
-    config_version = ['config_version']
-    config_release = ['config_release']
-
     running = param['running']
     idle = param['idle']
 
@@ -18,13 +14,13 @@ def run(param):
     running_compile = 0
     for v in running:
         running_total += 1
-        if v[1] == 'extract':
+        if v[4] == 'extract':
             running_extract += 1
-        if v[1] == 'compile':
+        if v[4] == 'compile':
             running_compile += 1
 
-    idle_extract = [v for v in idle if v[1] == 'extract']
-    idle_compile = [v for v in idle if v[1] == 'compile']
+    idle_extract = [v for v in idle if v[4] == 'extract']
+    idle_compile = [v for v in idle if v[4] == 'compile']
 
     selected = []
 

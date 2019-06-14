@@ -1,27 +1,22 @@
-category: cepcsoft
 subdir: EventDisplay
 version: '2.4'
 
 dep: [GCC, LCIO, GEAR, ROOT]
 
-location:
-  source: ''
-  build: 'src'
-  install: ''
-
 path:
+  source: ''
+  build: src
+  install: ''
   bin: '{install}/bin'
 
-setenv:
-  DRUIDDIR: '{install}'
+env:
+  set_env:
+    DRUIDDIR: '{install}'
 
 source:
   url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Druid/{version}/Druid-{version}.tar.gz
-  file: Druid-{version}.tar.gz
-  main: Druid-{version}
 
 build: [make]
 
 install:
   download: http
-  pre_compile: env

@@ -1,4 +1,3 @@
-category: cepcsoft
 subdir: Reconstruction/HighLevelObjectFinding/Jets
 version: 00-06-01
 
@@ -23,3 +22,4 @@ install:
   pre_build:
     command:
       cmd: ['tar', '-xvf', 'boost.tgz']
+      cwd: '{source}'

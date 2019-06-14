@@ -1,7 +1,6 @@
 import os
 
-from bsm.loader import load_relative
-call_and_log = load_relative('util', 'call_and_log')
+from bsm.util import call_and_log
 
 def _single_command(cmd, f, env):
     try:

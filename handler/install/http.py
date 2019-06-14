@@ -1,12 +1,13 @@
-from bsm.util import safe_mkdir
+import os
 
-from bsm.loader import load_relative
-call_and_log = load_relative('util', 'call_and_log')
+from bsm.util import safe_mkdir
+from bsm.util import call_and_log
 
 def run(param):
-    version = param['pkg_info']['config']['version']
-    url = param['pkg_info']['config']['source']['url'].format(version=version)
-    dst_dir = param['pkg_info']['dir']['download']
+    version = param['version']
+
+    url = param['config_package']['source']['url'].format(version=version)
+    dst_dir = os.path.join(param['package_path']['misc_dir'], 'download')
 
     safe_mkdir(dst_dir)
 

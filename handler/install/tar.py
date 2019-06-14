@@ -1,18 +1,21 @@
 import os
 
+from bsm.util import safe_rmdir
 from bsm.util import safe_mkdir
-
-from bsm.loader import load_relative
-call_and_log = load_relative('util', 'call_and_log')
+from bsm.util import call_and_log
 
 def run(param):
-    version = param['pkg_info']['config']['version']
+    version = param['version']
 
-    tar_file_name = param['pkg_info']['config']['source']['file'].format(version=version)
-    tar_file = os.path.join(param['pkg_info']['dir']['download'], tar_file_name)
-    main_dir = param['pkg_info']['config']['source'].get('main', '').format(version=version)
-    dst_dir = param['pkg_info']['dir']['source']
+    tar_file_name = param['config_package']['source']['file'].format(version=version)
+    tar_file = os.path.join(param['package_path']['misc_dir'], 'download', tar_file_name)
+    main_dir = param['config_package']['source']['main'].format(version=version)
 
+    dst_dir = param['config_package'].get('path', {}).get('source')
+    if not dst_dir:
+        return {'success': False, 'message': 'Path "source" is not specified'}
+
+    safe_rmdir(dst_dir)
     safe_mkdir(dst_dir)
 
     if main_dir:

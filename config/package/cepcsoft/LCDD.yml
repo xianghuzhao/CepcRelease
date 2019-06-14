@@ -1,4 +1,3 @@
-category: cepcsoft
 subdir: Simulation
 version: 03-02-00
 
@@ -8,8 +7,9 @@ path:
   lib: '{install}/lib'
   inc: '{install}/include'
 
-setenv:
-  GDML_SCHEMA_DIR: '{install}'
+env:
+  set_env:
+    GDML_SCHEMA_DIR: '{install}'
 
 source:
   url: svn://svn.freehep.org/lcdet/projects/lcdd/tags/v{version}

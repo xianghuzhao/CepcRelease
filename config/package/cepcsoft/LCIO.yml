@@ -1,4 +1,3 @@
-category: cepcsoft
 subdir: Framework
 version: 02-04-03
 
@@ -10,8 +9,9 @@ path:
   inc: '{install}/include'
   python: '{source}/src/python'
 
-setenv:
-  LCIO: '{install}'
+env:
+  set_env:
+    LCIO: '{install}'
 
 source:
   url: svn://svn.freehep.org/lcio/tags/v{version}
@@ -26,4 +26,3 @@ build: [cmake, make, make_install]
 
 install:
   download: svn
-  pre_compile: env

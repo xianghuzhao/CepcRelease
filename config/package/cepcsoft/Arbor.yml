@@ -1,6 +1,5 @@
-category: cepcsoft
 subdir: Reconstruction/PFA
-version: 3.2.1
+version: 3.4.2
 
 dep: [GCC, CMake, ROOT, ILCUTIL, Marlin, MarlinUtil]
 
@@ -11,8 +10,6 @@ path:
 
 source:
   url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Arbor/{version}/Arbor-{version}.tar.gz
-  file: 'Arbor-{version}.tar.gz'
-  main: 'Arbor-{version}'
 
 build: [cmake, make, make_install]
 

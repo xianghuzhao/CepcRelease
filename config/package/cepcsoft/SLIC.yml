@@ -1,15 +1,12 @@
-category: cepcsoft
 subdir: Simulation
 version: 03-01-03
 
 dep: [GCC, CMake, XercesC, Geant4, ILCUTIL, LCIO, LCDD, GDML, HepPDT]
 
 path:
-  home: '{install}'
-  src: '{source}'
-  cmake: '{install}'
   bin: '{build}/bin'
   inc: '{install}/include'
+  cmake: '{install}'
 
 source:
   url: svn://svn.freehep.org/lcdet/projects/slic/tags/v{version}

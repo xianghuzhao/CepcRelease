@@ -1,4 +1,3 @@
-category: external
 version: 4.9.4
 
 dep: [Wget, GCCSys, Make]
@@ -8,15 +7,16 @@ path:
   lib: '{install}/lib64'
   man: '{install}/share/man'
 
-setenv:
-  CC: '{install}/bin/gcc'
-  CXX: '{install}/bin/g++'
-  FC: '{install}/bin/gfortran'
+env:
+  set_env:
+    CC: '{bin}/gcc'
+    CXX: '{bin}/g++'
+    FC: '{bin}/gfortran'
 
 source:
   url: http://ftp.gnu.org/gnu/gcc/gcc-{version}/gcc-{version}.tar.gz
-  file: gcc-{version}.tar.gz
-  main: gcc-{version}
+
+patch: gcc-4.9.4.patch
 
 configure:
   args: ['--enable-languages=c,c++,fortran', --disable-multilib]
@@ -32,8 +32,8 @@ install:
   download: http
   pre_build:
     - command:
-        cmd: ['contrib/download_prerequisites']
-    - command:
-        cmd: ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure.in']
-    - command:
-        cmd: ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure']
+        cmd:
+          - ['contrib/download_prerequisites']
+          - ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure.in']
+          - ['sed', '-i', 's/M4=m4-not-needed/M4=m4/', 'gmp/configure']
+        cwd: '{source}'

@@ -1,8 +1,7 @@
-category: cepcsoft
 subdir: Reconstruction/Tracking
 version: 3.1.0
 
-dep: [GCC, CMake, ROOT, ILCUTIL, Marlin, MarlinUtil]
+dep: [GCC, CMake, ROOT, GSL, ILCUTIL, Marlin, MarlinUtil, MarlinTrk, KalTest, RAIDA]
 
 path:
   lib: '{install}/lib'

@@ -1,4 +1,3 @@
-category: external
 version: 2.8.5
 
 dep: GCC
@@ -9,8 +8,6 @@ path:
 
 source:
   url: http://www.cmake.org/files/v{version:.3}/cmake-{version}.tar.gz
-  file: cmake-{version}.tar.gz
-  main: cmake-{version}
 
 build: [configure, make, make_install]
 
@@ -18,4 +15,3 @@ clean: [build, source, download, log]
 
 install:
   download: http
-  pre_build: env

@@ -1,29 +1,28 @@
+import copy
+
 from bsm.loader import load_relative
 
-def _run_sub_transform(name, param):
+def _run_sub(name, param, config_package):
     run_func = load_relative('transform_package.'+name, 'run')
-    return run_func(param)
-
-def _run_switch(name, option, param):
-    if name in option and option[name].lower() in ['true', 'yes', 'on', '1']:
-        param['config_release'] = _run_sub_transform(name, param)
+    return run_func(param, config_package)
 
 def run(param):
-    return param['config_package']
+    config_package = copy.deepcopy(param['config_package'])
 
-    option = param['config_scenario']['option']
+    if param['category'] not in param['config_release'].get('setting', {}).get('category', {}):
+        return config_package
 
-    param['config_release'] = _run_sub_transform('software_platform', param)
-    param['config_release'] = _run_sub_transform('work_root', param)
-    param['config_release'] = _run_sub_transform('geant4_libdir', param)
+    _run_sub('geant4_libdir', param, config_package)
 
-    param['config_release'] = _run_sub_transform('install_steps', param)
+    _run_sub('package_path', param, config_package)
+    _run_sub('package_env', param, config_package)
 
-    if 'source' not in option or option['source'].lower() != 'origin':
-        param['config_release'] = _run_sub_transform('ihep_source', param)
+    if param['operation'] == 'install' and param['config_category']['content'].get(param['category'], {}).get('install'):
+        _run_sub('install_source', param, config_package)
+        _run_sub('install_steps', param, config_package)
 
-    _run_switch('no_clean', option, param)
-    _run_switch('clean_only', option, param)
-    _run_switch('keep_log', option, param)
+        _run_sub('no_clean', param, config_package)
+        _run_sub('clean_only', param, config_package)
+        _run_sub('keep_log', param, config_package)
 
-    return param['config_release']
+    return config_package

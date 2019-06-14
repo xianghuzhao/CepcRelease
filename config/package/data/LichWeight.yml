@@ -1,10 +1,11 @@
-category: data
 version: v4.20180701
+
+path:
+  source: ''
+  install: ''
 
 source:
   url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/LichWeight/{version}/LichWeight-{version}.tar.gz
-  file: 'LichWeight-{version}.tar.gz'
-  main: 'LichWeight-{version}'
 
 clean: [download, log]
 

@@ -1,4 +1,3 @@
-category: external
 version: 4.7.4
 
 dep: [GCC]
@@ -6,14 +5,12 @@ dep: [GCC]
 path:
   bin: '{install}/bin'
   lib: '{install}/lib'
-  pkgconfig: '{install}/lib/pkgconfig'
   inc: '{install}/include'
+  pkgconfig: '{install}/lib/pkgconfig'
 
 source:
   url: http://download.qt.io/archive/qt/{version:.3}/qt-everywhere-opensource-src-{version}.tar.gz
 #  url: http://download.qt.io/official_releases/qt/{version:.3}/{version}/qt-everywhere-opensource-src-{version}.tar.gz
-  file: qt-everywhere-opensource-src-{version}.tar.gz
-  main: qt-everywhere-opensource-src-{version}
 
 configure:
   args:
@@ -40,4 +37,3 @@ clean: [build, source, download, log]
 
 install:
   download: http
-  pre_compile: env

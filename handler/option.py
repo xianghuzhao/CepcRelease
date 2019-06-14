@@ -7,10 +7,10 @@ def run():
     options['platform'] = '[Common] Platform name, {arch}-{os}-{compiler}'
 
     options['work_root'] = '[Runtime] User work root directory'
-    options['version_work_root'] = '[Runtime] User work root directory with version directory'
+    options['work_ver_root'] = '[Runtime] User work root directory with version directory'
 
-    options['make_jobs'] = '[Installation] Number of jobs for make command'
     options['source'] = '[Installation] "origin" to use the original source to download packages, other value to use IHEP source'
+    options['make_jobs'] = '[Installation] Number of jobs for make command'
     options['no_clean'] = '[Installation] Do not clean intermediate files during installation'
     options['clean_only'] = '[Installation] Do not install packages, only clean the intermediate files'
     options['keep_log'] = '[Installation] Keep log files when cleaning intermediate files'

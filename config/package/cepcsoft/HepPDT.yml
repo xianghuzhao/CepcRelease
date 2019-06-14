@@ -1,4 +1,3 @@
-category: cepcsoft
 subdir: Simulation
 version: 3.04.01
 
@@ -11,8 +10,6 @@ path:
 
 source:
   url: http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-{version}.tar.gz
-  file: HepPDT-{version}.tar.gz
-  main: HepPDT-{version}
 
 build: [configure, make, make_install]
 
