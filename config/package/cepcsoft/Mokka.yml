@@ -10,8 +10,6 @@ path:
 
 source:
   url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Mokka/{version}/Mokka-{version}.tar.gz
-  file: Mokka-{version}.tar.gz
-  main: Mokka-{version}
 
 build: [cmake, make, make_install]
 

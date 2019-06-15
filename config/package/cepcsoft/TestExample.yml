@@ -1,0 +1,10 @@
+version: 0.1.0
+
+dep: [GCC, CMake, ILCUTIL, Marlin]
+
+source:
+  url: http://cepcgit.ihep.ac.cn/cepcsoft/TestExample.git
+  tag: 'v{version}'
+
+install:
+  download: git

@@ -9,7 +9,8 @@ path:
   marlin: '{install}/lib/libArborTracking.so'
 
 source:
-  url: http://cepcgit.ihep.ac.cn/cepcsoft/ArborTracking
+  url: http://cepcgit.ihep.ac.cn/cepcsoft/ArborTracking.git
+  tag: '{version}'
 
 build: [cmake, make, make_install]
 

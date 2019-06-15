@@ -1,4 +1,3 @@
-subdir: Simulation
 version: 3.04.01
 
 dep: [GCC]
@@ -9,7 +8,8 @@ path:
   inc: '{install}/include'
 
 source:
-  url: http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-{version}.tar.gz
+#  url: http://lcgapp.cern.ch/project/simu/HepPDT/download/HepPDT-{version}.tar.gz
+  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/HepPDT/{version}/HepPDT-{version}.tar.gz
 
 build: [configure, make, make_install]
 

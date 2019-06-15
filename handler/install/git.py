@@ -7,7 +7,9 @@ from bsm.util import call_and_log
 def run(param):
     version = param['version']
     url = param['config_package']['source']['url']
-    tag = param['action_param']['tag'].format(version=version)
+    tag = param['config_package']['source'].get('tag', '').format(version=version)
+    if not tag:
+        return {'success': False, 'message': 'Git tag is not specified'}
 
     source_dir = param['config_package'].get('path', {}).get('source')
     if not source_dir:

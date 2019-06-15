@@ -50,3 +50,10 @@ def run(param, cfg):
 
     if 'source' not in option or option['source'].lower() != 'origin':
         _ihep_source(param, cfg)
+
+    if 'source' in cfg and cfg.get('install', {}).get('download') == 'http':
+        package = param.get('name')
+        version = param.get('version')
+        if package and version:
+            md5url = '{base_url}/{package}/{version}/md5sum.txt'.format(base_url=IHEP_PACKAGE_BASE_URL, package=package, version=version)
+            cfg['source'].setdefault('md5url', md5url)

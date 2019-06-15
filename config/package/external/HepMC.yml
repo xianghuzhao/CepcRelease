@@ -1,4 +1,4 @@
-version: 2.06.08
+version: 2.06.09
 
 dep: [GCC, CMake]
 
@@ -8,7 +8,8 @@ path:
   cmake: '{install}'
 
 source:
-  url: http://lcgapp.cern.ch/project/simu/HepMC/download/HepMC-{version}.tar.gz
+#  url: http://lcgapp.cern.ch/project/simu/HepMC/download/HepMC-{version}.tar.gz
+  url: http://hepmc.web.cern.ch/hepmc/releases/hepmc{version}.tgz
 
 cmake:
   var:

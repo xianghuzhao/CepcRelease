@@ -10,7 +10,8 @@ path:
   cmake: '{install}'
 
 source:
-  url: https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-{version}.tar.gz
+#  url: https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-{version}.tar.gz
+  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/XercesC/{version}/xerces-c-{version}.tar.gz
 
 configure:
   args: [--enable-transcoder-gnuiconv, --enable-msgloader-inmemory]

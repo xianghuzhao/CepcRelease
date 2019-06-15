@@ -7,9 +7,9 @@ from bsm.util import call_and_log
 def run(param):
     version = param['version']
 
-    tar_file_name = param['config_package']['source']['file'].format(version=version)
-    tar_file = os.path.join(param['package_path']['misc_dir'], 'download', tar_file_name)
-    main_dir = param['config_package']['source']['main'].format(version=version)
+    tar_filename = param['config_package']['source']['file'].format(version=version)
+    tar_file = os.path.join(param['package_path']['misc_dir'], 'download', tar_filename)
+    main_dir = param['config_package']['source'].get('main', '').format(version=version)
 
     dst_dir = param['config_package'].get('path', {}).get('source')
     if not dst_dir:

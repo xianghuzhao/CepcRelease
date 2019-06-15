@@ -8,11 +8,10 @@ path:
   lib: '{install}/lib'
 
 source:
-  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/MokkaC/{version}/MokkaC-{version}.tar.gz
-  file: MokkaC-{version}.tar.gz
-  main: MokkaC-{version}
+  url: http://cepcgit.ihep.ac.cn/cepcsoft/MokkaC.git
+  tag: 'v{version}'
 
 build: [cmake, make, make_install]
 
 install:
-  download: http
+  download: git

@@ -9,9 +9,10 @@ path:
   marlin: '{install}/lib/libRanger.so'
 
 source:
-  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/Arbor/{version}/Arbor-{version}.tar.gz
+  url: http://cepcgit.ihep.ac.cn/cepcsoft/Arbor.git
+  tag: 'v{version}'
 
 build: [cmake, make, make_install]
 
 install:
-  download: http
+  download: git
