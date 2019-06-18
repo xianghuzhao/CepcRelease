@@ -7,7 +7,7 @@ def run(param, cfg):
 
     cfg['path'].setdefault('build', 'build')
 
-    if category == 'cepcsoft' and 'cmake' in cfg.get('build', []):
+    if category in ['cepcsoft', 'work', 'work_ver'] and 'cmake' in cfg.get('build', []):
         cfg['path'].setdefault('source', '')
         cfg['path'].setdefault('install', '')
         cfg['path'].setdefault('cmake', '')

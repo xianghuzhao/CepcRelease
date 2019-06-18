@@ -19,10 +19,11 @@ def run(param):
 
     if param['operation'] == 'install' and param['config_category']['content'].get(param['category'], {}).get('install'):
         _run_sub('install_source', param, config_package)
-        _run_sub('install_steps', param, config_package)
 
-        _run_sub('no_clean', param, config_package)
-        _run_sub('clean_only', param, config_package)
-        _run_sub('keep_log', param, config_package)
+    _run_sub('install_steps', param, config_package)
+
+    _run_sub('no_clean', param, config_package)
+    _run_sub('clean_only', param, config_package)
+    _run_sub('keep_log', param, config_package)
 
     return config_package
