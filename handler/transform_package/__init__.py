@@ -3,7 +3,7 @@ import copy
 from bsm.loader import load_relative
 
 def _run_sub(name, param, config_package):
-    run_func = load_relative('transform_package.'+name, 'run')
+    run_func = load_relative(__name__, 'transform_package.'+name, 'run')
     return run_func(param, config_package)
 
 def run(param):
@@ -17,7 +17,7 @@ def run(param):
     _run_sub('package_path', param, config_package)
     _run_sub('package_env', param, config_package)
 
-    if param['operation'] == 'install' and param['config_category']['content'].get(param['category'], {}).get('install'):
+    if param['operation'] == 'install' and param['config_category'].get(param['category'], {}).get('install'):
         _run_sub('install_source', param, config_package)
 
     _run_sub('install_steps', param, config_package)

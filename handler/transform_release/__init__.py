@@ -3,7 +3,7 @@ import copy
 from bsm.loader import load_relative
 
 def _run_sub(name, param, config_release):
-    run_func = load_relative('transform_release.'+name, 'run')
+    run_func = load_relative(__name__, 'transform_release.'+name, 'run')
     return run_func(param, config_release)
 
 def run(param):

@@ -1,7 +1,7 @@
 from bsm.loader import load_relative
 
 def _run_sub(name, param):
-    run_func = load_relative('attribute.'+name, 'run')
+    run_func = load_relative(__name__, 'attribute.'+name, 'run')
     return run_func(param)
 
 def run(param):
