@@ -9,16 +9,14 @@ def _run_sub(name, param, config_package):
 def run(param):
     config_package = copy.deepcopy(param['config_package'])
 
-    if param['category'] not in param['config_release'].get('setting', {}).get('category', {}):
-        return config_package
+    _run_sub('package_detect_config', param, config_package)
 
     _run_sub('geant4_libdir', param, config_package)
 
     _run_sub('package_path', param, config_package)
     _run_sub('package_env', param, config_package)
 
-    if param['operation'] == 'install' and param['config_category'].get(param['category'], {}).get('install'):
-        _run_sub('install_source', param, config_package)
+    _run_sub('install_source', param, config_package)
 
     _run_sub('install_steps', param, config_package)
 
