@@ -12,9 +12,10 @@ env:
     GDML_SCHEMA_DIR: '{install}'
 
 source:
-  url: svn://svn.freehep.org/lcdet/projects/lcdd/tags/v{version}
+  #url: svn://svn.freehep.org/lcdet/projects/lcdd/tags/v{version}
+  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/LCDD/{version}/LCDD-{version}.tar.gz
 
 build: [cmake, make, make_install]
 
 install:
-  download: svn
+  download: http

@@ -16,7 +16,8 @@ env:
     pylcio: 'python $LCIO/src/python/pylcio.py'
 
 source:
-  url: svn://svn.freehep.org/lcio/tags/v{version}
+  #url: svn://svn.freehep.org/lcio/tags/v{version}
+  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/LCIO/{version}/LCIO-{version}.tar.gz
 
 cmake:
   var:
@@ -27,4 +28,4 @@ cmake:
 build: [cmake, make, make_install]
 
 install:
-  download: svn
+  download: http

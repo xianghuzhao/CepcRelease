@@ -20,6 +20,7 @@ def run(param):
     _run_sub('package_env', param, config_package)
 
     _run_sub('install_source', param, config_package)
+    _run_sub('work_git', param, config_package)
 
     _run_sub('install_steps', param, config_package)
 

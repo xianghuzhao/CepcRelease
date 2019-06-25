@@ -9,11 +9,12 @@ path:
   cmake: '{install}'
 
 source:
-  url: svn://svn.freehep.org/lcdet/projects/slic/tags/v{version}
+  #url: svn://svn.freehep.org/lcdet/projects/slic/tags/v{version}
+  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/SLIC/{version}/SLIC-{version}.tar.gz
 
 clean: [download, log]
 
 build: [cmake, make]
 
 install:
-  download: svn
+  download: http

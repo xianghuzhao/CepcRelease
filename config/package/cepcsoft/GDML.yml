@@ -7,9 +7,10 @@ path:
   lib: '{install}/lib'
 
 source:
-  url: svn://svn.freehep.org/lcdet/projects/gdml/tags/v{version}
+  #url: svn://svn.freehep.org/lcdet/projects/gdml/tags/v{version}
+  url: http://cepcsoft.ihep.ac.cn/package/cepcsoft/GDML/{version}/GDML-{version}.tar.gz
 
 build: [cmake, make, make_install]
 
 install:
-  download: svn
+  download: http

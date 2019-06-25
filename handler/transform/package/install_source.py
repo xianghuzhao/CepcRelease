@@ -49,7 +49,6 @@ def run(param, cfg):
                 for ext in ['.tar.gz', '.tar.bz2', '.tgz']:
                     if cfg['source']['file'].endswith(ext):
                         cfg['source']['main'] = cfg['source']['file'][:-len(ext)]
-                        break
 
     if 'source' not in option or option['source'].lower() != 'origin':
         _ihep_source(param, cfg)
