@@ -12,6 +12,8 @@ path:
 env:
   set_env:
     LCIO: '{install}'
+  alias:
+    pylcio: 'python $LCIO/src/python/pylcio.py'
 
 source:
   url: svn://svn.freehep.org/lcio/tags/v{version}
