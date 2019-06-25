@@ -79,21 +79,27 @@ def _detect_version(config_cepcenv, cmake_info, param, cfg):
 def _detect_build(config_cepcenv, cmake_info, param, cfg):
     if 'build' in cfg:
         return
+
     if 'build' in config_cepcenv:
         cfg['build'] = config_cepcenv['build']
         return
+
     if 'build' in cmake_info:
         cfg['build'] = cmake_info['build']
 
 def _detect_path(config_cepcenv, cmake_info, param, cfg):
-    final_path = {}
-    final_path.update(cmake_info.get('path', {}))
-    final_path.update(config_cepcenv.get('path', {}))
-    final_path.update(cfg.get('path', {}))
-    cfg['path'] = final_path
+    if 'path' in cfg:
+        return
+
+    if 'path' in config_cepcenv:
+        cfg['path'] = config_cepcenv['path']
+        return
+
+    if 'path' in cmake_info:
+        cfg['path'] = cmake_info['path']
 
 def run(param, cfg):
-    if param['operation'] != 'runtime':
+    if param['type'] != 'runtime':
         return
 
     if param['category'] not in ['work', 'work_ver']:

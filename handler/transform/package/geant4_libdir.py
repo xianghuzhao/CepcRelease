@@ -2,7 +2,7 @@ import os
 import platform
 
 def run(param, config_package):
-    if param['category'] != 'external' or param['name'] != 'Geant4':
+    if param['name'] != 'Geant4' or param['category'] != 'external':
         return
 
     libdir = 'lib'

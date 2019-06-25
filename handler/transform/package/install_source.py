@@ -33,7 +33,7 @@ def _ihep_source(param, cfg):
 
 
 def run(param, cfg):
-    if param['operation'] != 'install' or not param['config_category'].get(param['category'], {}).get('install'):
+    if param['type'] != 'install' or not param['config_category'].get(param['category'], {}).get('install'):
         return
 
     option = param['config_option']

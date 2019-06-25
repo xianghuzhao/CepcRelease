@@ -35,7 +35,7 @@ category:
     version_dir: true
     root: '{software_root}/{platform}/standby'
 
-category_priority: [work_ver, work, cepcsoft, external, data, standby]
+category_priority: [work, work_ver, cepcsoft, external, data, standby]
 
 install:
   steps:
