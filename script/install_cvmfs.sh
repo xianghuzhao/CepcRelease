@@ -1,6 +1,7 @@
 #!/bin/sh
 
-yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+#yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+yum install -y http://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs-release-latest.noarch.rpm
 yum install -y cvmfs cvmfs-config-default
 rpm -ivh http://cvmfs-stratum-one.ihep.ac.cn/cvmfs/software/cvmfs-config-ihep-1.3-1.noarch.rpm
 

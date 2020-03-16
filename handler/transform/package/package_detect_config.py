@@ -66,9 +66,6 @@ def _load_cmake_info(param, cfg):
     return result
 
 def _detect_version(config_cepcenv, cmake_info, param, cfg):
-    if param.get('version') or cfg.get('version'):
-        return
-
     if 'version' in config_cepcenv:
         cfg['version'] = config_cepcenv['version']
         return
@@ -77,9 +74,6 @@ def _detect_version(config_cepcenv, cmake_info, param, cfg):
         cfg['version'] = cmake_info['version']
 
 def _detect_build(config_cepcenv, cmake_info, param, cfg):
-    if 'build' in cfg:
-        return
-
     if 'build' in config_cepcenv:
         cfg['build'] = config_cepcenv['build']
         return
@@ -88,9 +82,6 @@ def _detect_build(config_cepcenv, cmake_info, param, cfg):
         cfg['build'] = cmake_info['build']
 
 def _detect_path(config_cepcenv, cmake_info, param, cfg):
-    if 'path' in cfg:
-        return
-
     if 'path' in config_cepcenv:
         cfg['path'] = config_cepcenv['path']
         return

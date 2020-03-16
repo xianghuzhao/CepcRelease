@@ -1,0 +1,47 @@
+bsm:
+#  require: '>=0.4,<1.0'
+  require: '==1.0.*'
+
+attribute:
+  essential:
+    - platform
+
+option:
+  attribute:
+    arch:
+      description: System architecture
+    os:
+      description: Operation system
+    compiler:
+      description: Compiler name and version
+    platform:
+      description: 'Platform name, {arch}-{os}-{compiler}'
+    system_gcc:
+      type: bool
+      description: Use system gcc, do not install
+    make_jobs:
+      type: int
+      description: Number of jobs for make command
+
+  release:
+    work_root:
+      description: User work root directory
+    workver_root:
+      description: User work root directory with version directory
+
+    source:
+      description: '"origin" to use the original source to download packages, other value to use IHEP source'
+    no_clean:
+      description: Do not clean intermediate files during installation
+    clean_only:
+      description: Do not install packages, only clean the intermediate files
+    keep_log:
+      description: Keep log files when cleaning intermediate files
+
+handler:
+  attribute:
+    extra_props: [option_attribute]
+  install:
+    extra_props: [app]
+  transform.package:
+    extra_props: [app, option_release]

@@ -1,12 +1,12 @@
 import os
 
-from bsm.handler import HandlerNotAvailableError
+from bsm.error import HandlerNotAvailableError
 
 from bsm.logger import get_logger
 _logger = get_logger()
 
 def run(param):
-    if param['category'] not in ['work', 'work_ver']:
+    if param['category'] not in ['work', 'workver']:
         _logger.error('Package in category "{0}" could not be built'.format(param['category']))
         raise HandlerNotAvailableError
 

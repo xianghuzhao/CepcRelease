@@ -12,8 +12,8 @@ def _calculate_jobs():
     return min(jobs_cpu, jobs_mem)
 
 def run(param):
-    if 'make_jobs' in param['config_option']:
-        make_jobs = int(param['config_option']['make_jobs'])
+    if 'make_jobs' in param['config_option_attribute']:
+        make_jobs = param['config_option_attribute']['make_jobs']
     else:
         make_jobs = _calculate_jobs()
 

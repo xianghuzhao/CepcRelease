@@ -8,7 +8,7 @@ def run(param):
     version = param['version']
     url = param['config_package']['source']['url']
     tag = param['config_package']['source'].get('tag', '').format(version=version)
-    keep_git = param['config_package']['source'].get('keep_git', False)
+    keep_dotgit = param['config_package']['source'].get('keep_dotgit', False)
     branch = param['config_package']['source'].get('branch', 'develop')
 
     if not tag:
@@ -32,7 +32,7 @@ def run(param):
         if ret != 0:
             return {'success': False, 'message': 'Git checkout tag exit code: {0}'.format(ret)}
 
-    if not keep_git:
+    if not keep_dotgit:
         safe_rmdir(os.path.join(source_dir, '.git'))
 
     return {'success': ret==0, 'message': 'Git OK'}

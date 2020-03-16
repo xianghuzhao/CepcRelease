@@ -35,9 +35,12 @@ def _detect_os():
     return 'unknown'
 
 
-def _installed_compiler(config_release_origin):
-    gcc_cfg = config_release_origin.get('package', {}).get('external/GCC', {})
+def _installed_compiler(config_release_package_origin):
+    gcc_cfg = config_release_package_origin.get('external/GCC', {})
     gcc_version = gcc_cfg.get('version')
+
+    if not gcc_version:
+        return 'unknown'
 
     compiler = 'gcc'
     ver_frag = gcc_version.split('.')
@@ -56,26 +59,22 @@ def _provided_compiler():
     except Exception as e:
         return 'unknown'
 
-def _detect_compiler(option, config_release_origin):
-    if 'system_gcc' in option and option['system_gcc']:
+def _detect_compiler(system_gcc, config_release_package_origin):
+    if system_gcc:
         return _provided_compiler()
-    return _installed_compiler(config_release_origin)
-
-
-def _search_option(option, name):
-    if name in option and option[name]:
-        return option[name]
-    return ''
+    return _installed_compiler(config_release_package_origin)
 
 
 def run(param):
-    option = param['config_option']
-    config_release_origin = param['config_release_origin']
+    option = param['config_option_attribute']
+    config_release_package_origin = param['config_release_package_origin']
 
-    arch = (_search_option(option, 'arch') or _detect_arch())
-    os = (_search_option(option, 'os') or _detect_os())
-    compiler = (_search_option(option, 'compiler') or _detect_compiler(option, config_release_origin))
+    system_gcc = option.get('system_gcc', False)
 
-    final_platform = (_search_option(option, 'platform') or '-'.join([arch, os, compiler]))
+    arch = option.get('arch') or _detect_arch()
+    os = option.get('os') or _detect_os()
+    compiler = option.get('compiler') or _detect_compiler(system_gcc, config_release_package_origin)
 
-    return {'arch': arch, 'os': os, 'compiler': compiler, 'platform': final_platform}
+    final_platform = option.get('platform') or '-'.join([arch, os, compiler])
+
+    return {'arch': arch, 'os': os, 'compiler': compiler, 'platform': final_platform, 'system_gcc': system_gcc}

@@ -44,3 +44,5 @@ def run(param):
 
     install_cmd = PACKAGE_MANAGER[mgr_type]
     _logger.info('The missing package(s) could be installed with the following command:\n' + ' '.join(install_cmd+pkg_install_name))
+
+    haha('OS not supported')

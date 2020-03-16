@@ -2,7 +2,7 @@ def run(param, cfg):
     if param['type'] != 'runtime':
         return
 
-    if param['category'] not in ['work', 'work_ver']:
+    if param['category'] not in ['work', 'workver']:
         return
 
     if cfg.get('install', {}).get('download') != 'git':
